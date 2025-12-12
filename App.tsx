@@ -57,7 +57,7 @@ const App: React.FC = () => {
         }}
       />
 
-      <div className="max-w-2xl mx-auto relative z-10 shadow-2xl min-h-screen bg-white/80 backdrop-blur-sm sm:my-8 sm:rounded-xl overflow-hidden border-t-8 border-navy-900 w-full">
+      <div className="max-w-2xl mx-auto relative z-10 shadow-2xl min-h-screen bg-white/95 backdrop-blur-sm sm:my-8 sm:rounded-xl overflow-hidden border-t-8 border-navy-900 w-full">
         {/* Header / Hero Section */}
         <header className="relative text-center pt-12 pb-8 px-6 bg-gradient-to-b from-white to-[#F0F0F0]">
           {/* Decorative Top Line */}
@@ -172,9 +172,23 @@ const App: React.FC = () => {
           </SectionWrapper>
         </main>
 
-        <footer className="text-center py-8 text-stone-400 text-xs bg-white border-t border-stone-100 animate-on-scroll">
-          <p>In Loving Memory of Todd James San Agustin</p>
-          <p className="mt-1">Semper Fi</p>
+        <footer className="relative text-center py-12 px-6 bg-white border-t border-stone-100 overflow-hidden">
+          <div className="relative z-10">
+            <p className="text-stone-400 text-xs tracking-widest uppercase mb-2">
+              In Loving Memory of
+            </p>
+            <p className="text-navy-900 font-serif font-bold text-lg mb-4 tracking-wide">
+              Todd James San Agustin
+            </p>
+
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-px w-6 bg-gold-500 opacity-60"></div>
+              <p className="font-serif italic text-gold-500 font-medium text-sm">
+                Semper Fi
+              </p>
+              <div className="h-px w-6 bg-gold-500 opacity-60"></div>
+            </div>
+          </div>
         </footer>
       </div>
     </div>
