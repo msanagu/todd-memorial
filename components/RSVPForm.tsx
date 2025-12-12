@@ -243,7 +243,7 @@ export const RSVPForm: React.FC = () => {
                     subscribeToUpdates: e.target.checked,
                   })
                 }
-                className="focus:ring-blue-900 h-4 w-4 text-navy-900 border-stone-300 rounded"
+                className="focus:ring-navy-900 h-4 w-4 text-navy-900 border-stone-300 rounded"
               />
             </div>
             <div className="ml-3 text-sm">

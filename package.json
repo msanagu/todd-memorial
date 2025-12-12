@@ -12,7 +12,8 @@
     "firebase": "^12.6.0",
     "lucide-react": "^0.560.0",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "twilio": "^5.10.7"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
