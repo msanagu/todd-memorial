@@ -22,7 +22,7 @@ export const MEMORIAL_DATA: MemorialData = {
   },
   service: {
     title: "Memorial Service",
-    time: "1:00 PM",
+    time: "12:45 PM",
     location: {
       name: "First Presbyterian Church",
       address: "1735 4th Ave.",

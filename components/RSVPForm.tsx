@@ -27,6 +27,7 @@ export const RSVPForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Save RSVP to Firebase
       await addDoc(collection(db, "rsvps"), {
         name: formData.name.trim(),
         phone: formData.phone.trim(),
@@ -35,6 +36,26 @@ export const RSVPForm: React.FC = () => {
         subscribeToUpdates: formData.subscribeToUpdates,
         timestamp: Date.now(),
       });
+
+      // Send confirmation SMS if opted in
+      if (formData.subscribeToUpdates) {
+        try {
+          await fetch("/.netlify/functions/send-rsvp-sms", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.name.trim(),
+              phone: formData.phone.trim(),
+              attending: formData.attending,
+            }),
+          });
+        } catch (smsError) {
+          console.error("SMS sending failed:", smsError);
+          // Don't block RSVP success if SMS fails
+        }
+      }
 
       setStep("success");
     } catch (error) {
