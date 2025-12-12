@@ -230,7 +230,7 @@ export const RSVPForm: React.FC = () => {
         </div>
 
         {/* SMS Consent */}
-        <div className="mb-8 bg-gold-500/10 p-4 rounded-lg border border-gold-500/20">
+        {/* <div className="mb-8 bg-gold-500/10 p-4 rounded-lg border border-gold-500/20">
           <label className="flex items-start cursor-pointer">
             <div className="flex items-center h-5">
               <input
@@ -257,7 +257,7 @@ export const RSVPForm: React.FC = () => {
               </p>
             </div>
           </label>
-        </div>
+        </div> */}
 
         <button
           type="submit"
