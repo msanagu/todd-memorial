@@ -283,7 +283,7 @@ export const RSVPForm: React.FC = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-navy-900 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-900 uppercase tracking-wider transition-all ${
+          className={`w-full py-3 px-4 border border-transparent rounded-md shadow-sm font-bold text-white bg-navy-900 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-900 transition-all ${
             isSubmitting
               ? "opacity-80"
               : "hover:shadow-lg transform active:scale-[0.99]"

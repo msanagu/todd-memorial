@@ -10,18 +10,18 @@ const App: React.FC = () => {
   useEffect(() => {
     const style = document.createElement("style");
     style.textContent = `
-      @keyframes fadeSlideBlur {
+      @keyframes fadeUp {
         from {
-          transform: translateY(12px);
-          filter: blur(3px);
+          opacity: 0;
+          transform: translateY(24px);
         }
         to {
+          opacity: 1;
           transform: translateY(0);
-          filter: blur(0);
         }
       }
       .animate-in {
-        animation: fadeSlideBlur 0.7s ease-out both;
+        animation: fadeUp 2.8s cubic-bezier(0.16, 1, 0.3, 1) both;
       }
     `;
     document.head.appendChild(style);
@@ -97,7 +97,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Main Content */}
-        <main className="p-4 md:p-8 bg-[#FDFBF7]">
+        <main className="p-4 md:p-4 bg-[#FDFBF7]">
           <SectionWrapper className="max-w-xl mx-auto">
             <p className="text-center text-stone-600 italic font-serif mb-8 text-lg animate-on-scroll">
               The family invites you to join them in honoring the life and
