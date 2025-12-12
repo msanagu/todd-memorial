@@ -21,4 +21,5 @@ export interface MemorialData {
   photoUrl: string;
   burial: EventDetail;
   service: EventDetail;
+  liveStreamUrl?: string;
 }

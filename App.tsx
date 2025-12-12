@@ -116,6 +116,41 @@ const App: React.FC = () => {
               </div>
             </div>
 
+            {/* Livestream Section */}
+            <div className="mt-8 mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
+              <div className="p-6 bg-stone-50 border-b border-stone-100">
+                <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
+                  <span className="mr-3 relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                  </span>
+                  Watch Service Live
+                </h3>
+                <p className="text-stone-600 mt-1 text-sm">
+                  Join us virtually to celebrate Todd's life.
+                </p>
+              </div>
+              <div className="bg-black">
+                <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+                  <iframe
+                    src="https://vimeo.com/event/5581149/embed"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    title="Memorial Service Livestream"
+                  />
+                </div>
+              </div>
+            </div>
+
             {/* Additional Info / Resources */}
             <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
               <h3 className="font-serif text-xl text-navy-900 mb-3">

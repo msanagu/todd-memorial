@@ -36,4 +36,5 @@ export const MEMORIAL_DATA: MemorialData = {
       "Reception with light fare to follow immediately after the service.",
     ],
   },
+  liveStreamUrl: "https://www.youtube.com/watch?v=YOUR_STREAM_ID",
 };
