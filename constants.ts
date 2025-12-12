@@ -5,7 +5,7 @@ export const MEMORIAL_DATA: MemorialData = {
   dob: "March 16, 1965",
   dod: "November 16, 2025",
   serviceDate: "December 19th, 2025",
-  photoUrl: "/todd-memorial/todd-marines-smaller.jpg",
+  photoUrl: "/todd-marines-smaller.jpg",
   burial: {
     title: "Military Honors Burial",
     time: "11:30 AM",
