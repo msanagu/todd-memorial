@@ -3,6 +3,7 @@ import { MEMORIAL_DATA } from "./constants";
 import { EventCard } from "./components/EventCard";
 import { SectionWrapper } from "./components/SectionWrapper";
 import { Guestbook } from "./components/Guestbook";
+import { RSVPForm } from "./components/RSVPForm";
 import { Heart } from "lucide-react";
 
 const App: React.FC = () => {
@@ -150,6 +151,11 @@ const App: React.FC = () => {
                   />
                 </div>
               </div>
+            </div>
+
+            {/* RSVP Section - Placed after details, before livestream */}
+            <div className="mt-8">
+              <RSVPForm />
             </div>
 
             {/* Guestbook Section */}
