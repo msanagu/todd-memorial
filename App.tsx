@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { MEMORIAL_DATA } from "./constants";
 import { EventCard } from "./components/EventCard";
 import { SectionWrapper } from "./components/SectionWrapper";
+import { Guestbook } from "./components/Guestbook";
 import { Heart } from "lucide-react";
 
 const App: React.FC = () => {
@@ -150,6 +151,9 @@ const App: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* Guestbook Section */}
+            <Guestbook />
 
             {/* Additional Info / Resources */}
             <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
