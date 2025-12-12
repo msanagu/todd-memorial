@@ -107,9 +107,8 @@ export const RSVPForm: React.FC = () => {
               RSVP & Updates
             </h3>
             <p className="text-stone-300 mt-2 text-sm max-w-sm">
-              Please let the family know if you will attend. Opt-in for text
-              updates to receive real-time notifications about parking or
-              schedule changes.
+              Please let the family know if you will attend. Important updates
+              will be sent by text message to your mobile number.
             </p>
           </div>
         </div>
@@ -251,7 +250,7 @@ export const RSVPForm: React.FC = () => {
         </div>
 
         {/* SMS Consent */}
-        <div className="mb-8 bg-gold-500/10 p-4 rounded-lg border border-gold-500/20">
+        {/* <div className="mb-8 bg-gold-500/10 p-4 rounded-lg border border-gold-500/20">
           <label className="flex items-start cursor-pointer">
             <div className="flex items-center h-5">
               <input
@@ -278,6 +277,19 @@ export const RSVPForm: React.FC = () => {
               </p>
             </div>
           </label>
+        </div> */}
+
+        {/* Text Updates Notice */}
+        <div className="mb-6 bg-sky-50 border border-sky-200 rounded-lg p-4 flex items-start space-x-3">
+          <Bell className="w-5 h-5 text-sky-600 mt-0.5 flex-shrink-0" />
+          <div className="text-sm">
+            <p className="text-sky-700 font-bold mb-1">Text Notifications</p>
+            <p className="text-sky-700">
+              You may receive important text updates about parking, schedule
+              changes, or livestream links leading up to and on the day of the
+              service.
+            </p>
+          </div>
         </div>
 
         <button
