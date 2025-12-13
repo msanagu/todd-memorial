@@ -45,9 +45,19 @@
     <div class="loader">
       <div class="spinner"></div>
       <p>Redirecting to memorial page...</p>
+      <p style="margin-top: 1rem">
+        If you are not redirected automatically,
+        <a
+          href="https://fancy-melba-541047.netlify.app"
+          style="color: #c5b358; text-decoration: none; font-weight: 600"
+          >click here</a
+        >.
+      </p>
     </div>
     <script>
-      window.location.href = "https://fancy-melba-541047.netlify.app";
+      setTimeout(function () {
+        window.location.replace("https://fancy-melba-541047.netlify.app");
+      }, 100);
     </script>
   </body>
 </html>
