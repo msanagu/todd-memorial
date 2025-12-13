@@ -171,13 +171,13 @@ export const Program: React.FC<ProgramProps> = ({ onBack }) => {
         </div>
 
         {/* Parking and Reception Info */}
-        <div className="bg-navy-900 text-white rounded-xl p-6 shadow-lg">
+        <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll animate-ing">
           <h2 className="font-serif text-xl font-bold mb-4 text-center">
             Parking & Reception
           </h2>
 
           <div className="text-center space-y-2">
-            <p className="text-stone-300 text-sm">
+            <p className="text-sm">
               Parking is available in the lot at the corner of 3rd and Elm.
               Reception with light fare immediately following the service.
             </p>
@@ -188,7 +188,7 @@ export const Program: React.FC<ProgramProps> = ({ onBack }) => {
         <div className="mt-8 text-center">
           <button
             onClick={handleOpenPDF}
-            className="inline-flex items-center bg-navy-900 text-white px-8 py-4 rounded-xl font-bold hover:bg-navy-800 transition-colors shadow-lg"
+            className="inline-flex items-center bg-navy-900 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-900 transition-colors shadow-md active:transform active:scale-95 transition-colors shadow-lg"
           >
             <FileText className="w-5 h-5 mr-3" />
             Download Program PDF
