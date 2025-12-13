@@ -76,7 +76,8 @@ export const MEMORIAL_DATA: MemorialData = {
       items: [
         { title: "Musical Prelude", performedBy: "Shari San Agustin" },
         { title: "Opening Prayer", performedBy: "Pastor Rob Novak" },
-        { title: "Scripture Reading", performedBy: "Zion San Agustin" },
+        { title: "Scripture Reading", performedBy: "Family & Friends" },
+        { title: "Words of Remembrance", performedBy: "Family & Friends" },
         { title: "Eulogy", performedBy: "Jason San Agustin" },
         { title: "Video Tribute" },
         { title: "Homily", performedBy: "Pastor Rob Novak" },
