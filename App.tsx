@@ -6,6 +6,7 @@ import { SectionWrapper } from "./components/SectionWrapper";
 import { Guestbook } from "./components/Guestbook";
 import { RSVPForm } from "./components/RSVPForm";
 import { PrintableProgram } from "./components/PrintableProgram";
+import { Program } from "./components/Program";
 import { Heart, Printer } from "lucide-react";
 
 const MainPage: React.FC = () => {
@@ -165,7 +166,7 @@ const MainPage: React.FC = () => {
             {/* Guestbook Section */}
             <Guestbook />
 
-            {/* Printable Program Feature - commented out until finalized */}
+            {/* Program Feature - commented out until finalized */}
             {/* <div className="mt-8 flex flex-col items-center">
               <button
                 onClick={() => navigate("/program")}
@@ -229,6 +230,11 @@ const MainPage: React.FC = () => {
 
 const ProgramPage: React.FC = () => {
   const navigate = useNavigate();
+  return <Program onBack={() => navigate("/")} />;
+};
+
+const PrintProgramPage: React.FC = () => {
+  const navigate = useNavigate();
   return <PrintableProgram onBack={() => navigate("/")} />;
 };
 
@@ -237,6 +243,7 @@ const App: React.FC = () => {
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/program" element={<ProgramPage />} />
+      <Route path="/print-program" element={<PrintProgramPage />} />
     </Routes>
   );
 };

@@ -110,12 +110,10 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
               Acknowledgements
             </h3>
             <p className="text-stone-600 text-sm leading-relaxed italic font-serif">
-              The family of {MEMORIAL_DATA.name} wishes to express our sincere
-              appreciation for all the prayers, phone calls, visits, and many
-              other acts of kindness shown during the time of this loss.
+              {MEMORIAL_DATA.program.acknowledgements.text}
             </p>
             <p className="text-navy-900 font-bold mt-4 font-serif">
-              – The San Agustins
+              {MEMORIAL_DATA.program.acknowledgements.signature}
             </p>
           </div>
 
@@ -123,12 +121,11 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
           <div className="mb-8">
             <div className="bg-stone-50 p-6 rounded-xl border border-stone-200 text-center">
               <h3 className="font-serif text-xl text-navy-900 font-bold mb-3">
-                In Lieu of Flowers
+                {MEMORIAL_DATA.program.inLieuOfFlowers.title}
               </h3>
 
               <p className="text-stone-700 text-sm mb-4 font-serif italic leading-relaxed">
-                The family encourages supporting Todd’s daughter Stephanie & her
-                twins Zion & Zuriel who he helped support.
+                {MEMORIAL_DATA.program.inLieuOfFlowers.description}
               </p>
 
               <div className="flex justify-center mb-4">
@@ -137,15 +134,14 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
 
               <div className="flex flex-col items-center">
                 <div className="bg-white p-2 border border-stone-200 shadow-sm rounded-sm">
-                  {/* Placeholder QR Code - Generates a generic one */}
                   <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://gofundme.com"
+                    src="/qr.png"
                     alt="Donation QR Code"
                     className="w-24 h-24"
                   />
                 </div>
                 <p className="text-[10px] text-stone-500 mt-2 uppercase tracking-wider font-bold">
-                  Scan to Support
+                  {MEMORIAL_DATA.program.inLieuOfFlowers.qrCodeLabel}
                 </p>
               </div>
             </div>
@@ -153,12 +149,20 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
 
           <div className="mb-4 text-center">
             <h4 className="text-xs font-bold text-navy-900 uppercase tracking-widest mb-1">
-              Parking & Reception
+              {MEMORIAL_DATA.program.parkingAndReception.title}
             </h4>
             <p className="text-[10px] text-stone-600 font-sans leading-relaxed">
-              Parking is available in the lot at the corner of 3rd and Elm.
-              <br />
-              Reception with light fare immediately following the service.
+              {MEMORIAL_DATA.program.parkingAndReception.text
+                .split("\n")
+                .map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    {i <
+                      MEMORIAL_DATA.program.parkingAndReception.text.split("\n")
+                        .length -
+                        1 && <br />}
+                  </React.Fragment>
+                ))}
             </p>
           </div>
         </div>
@@ -217,174 +221,91 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
 
           <div className="border-b-2 border-gold-500 pb-4 mb-4 pl-4">
             <h2 className="font-serif text-2xl text-navy-900 font-bold uppercase tracking-widest leading-none mb-1">
-              Todd James
+              {MEMORIAL_DATA.program.obituary.title
+                .split(" ")
+                .slice(0, 2)
+                .join(" ")}
               <br />
-              San Agustin
+              {MEMORIAL_DATA.program.obituary.title
+                .split(" ")
+                .slice(2)
+                .join(" ")}
             </h2>
             <p className="font-serif text-stone-600 italic text-sm">
-              March 16, 1965 – November 16, 2025
+              {MEMORIAL_DATA.program.obituary.subtitle}
             </p>
           </div>
 
-          <div className="flex-1 overflow-hidden text-[10px] text-stone-700 leading-relaxed text-justify pr-2 font-serif space-y-3">
-            <p>
-              Today, we gather to honor the life of Todd James San Agustin — a
-              devoted son, brother, Marine, father, grandfather, and a man whose
-              faith in Christ guided every chapter of his life.
-            </p>
-            <p>
-              Born in Honolulu, Hawaii, to Priscilla and Daniel San Agustin,
-              Todd was the youngest of three children, raised alongside his
-              siblings Mark and Lois in a proud military household. After years
-              of relocating as a military family, the San Agustins settled in
-              San Diego, where Todd grew up in Chula Vista.
-            </p>
-            <p>
-              As a young adult, Todd married Leah Venegas, and together they
-              began their life and family. Their marriage brought forth two
-              children, Jason and Stephanie, who remained among Todd’s greatest
-              blessings.
-            </p>
-            <p>
-              Todd chose to serve his country. He joined the United States
-              Marine Corps and served honorably through multiple deployments,
-              including the Gulf War and Desert Storm. His leadership,
-              discipline, and sense of duty reflected the values instilled in
-              him from childhood.
-            </p>
-            <p>
-              Todd pursued higher education and earned his Bachelor of Science
-              from the University of Illinois, becoming the first in his family
-              to attain an advanced degree. He went on to build a successful
-              career in engineering and systems leadership, including serving as
-              Vice President of Engineering and Systems at Sony. Throughout his
-              life, Todd remained committed to supporting veterans, offering
-              understanding and compassion shaped by his own experiences.
-            </p>
-            <p>
-              Todd’s faith was the constant thread of his life. His relationship
-              with Christ grounded him, shaped his character, and provided
-              enduring peace. His love for gospel, especially the music of
-              Andraé Crouch, reflected the quiet devotion he carried throughout
-              his life.
-            </p>
-            <p>
-              Todd’s life held both triumph and hardship. Like many who have
-              lived greatly, he faced battles seen and unseen. But what Todd
-              should be remembered for is the way he continued to love, to
-              serve, and to rise. He gave generously — to his family, to his
-              community, to his Marine brothers, and to all who crossed his
-              path.
-            </p>
-            <p>
-              Todd is survived by his children, Jason and Stephanie; his
-              daughter-in-law, Mary San Agustin; and his grandchildren, Jasmine
-              (10), twins Zion and Zuriel (10), and Titus (1). He is also
-              survived by his brother and sister-in-law, Mark and Shari San
-              Agustin; his sister and brother-in-law, Lois and Ed Garbett; his
-              mother, Priscilla San Agustin; and many nieces, nephews,
-              great-nieces, and great-nephews who adored him.
-            </p>
-            <p>
-              Each of us carries a different memory of Todd — but all reflect
-              the same truth. He was a fighter. A giver. A protector. A man who
-              lived many lives, touched many hearts, and whose legacy endures in
-              the people he loved.
-            </p>
-            <p>
-              As we honor his life, we honor the faith that sustained him,
-              guided him, and now brings him home. May we carry forward his
-              courage, his kindness, his humor, and his unwavering love.
-            </p>
-            <p className="italic font-bold text-navy-900 pt-1">
-              May the memory of Todd James San Agustin be a lasting blessing,
-              and may he rest in peace. Amen.
-            </p>
+          <div className="flex-1 overflow-hidden text-[10px] text-stone-700 leading-[1.4] text-justify pr-2 font-serif space-y-2">
+            {MEMORIAL_DATA.program.obituary.paragraphs.map(
+              (paragraph, index) => {
+                const isLastParagraph =
+                  index ===
+                  MEMORIAL_DATA.program.obituary.paragraphs.length - 1;
+                return (
+                  <p
+                    key={index}
+                    className={
+                      isLastParagraph
+                        ? "italic font-bold text-navy-900 pt-1"
+                        : ""
+                    }
+                  >
+                    {paragraph}
+                  </p>
+                );
+              }
+            )}
           </div>
         </div>
 
         {/* === INSIDE RIGHT (Order of Service) === */}
         <div className="w-[5.5in] h-full p-10 flex flex-col relative">
-          <h2 className="font-serif text-3xl text-navy-900 font-bold mb-6 text-center pb-4 border-b border-stone-200">
-            Order of Service
+          <h2 className="font-serif text-3xl text-navy-900 font-bold mb-6 text-center pb-4 border-stone-200">
+            {MEMORIAL_DATA.program.orderOfService.title}
           </h2>
 
           <div className="space-y-4 font-serif text-xs mb-4">
-            <div className="flex justify-between items-baseline">
-              <span className="font-bold text-navy-900 uppercase tracking-wider">
-                Musical Prelude
-              </span>
-              <span className="text-stone-500 italic">Shari San Agustin</span>
-            </div>
-
-            <div className="flex justify-between items-baseline">
-              <span className="font-bold text-navy-900 uppercase tracking-wider">
-                Opening Prayer
-              </span>
-              <span className="text-stone-500 italic">Pastor Rob Novak</span>
-            </div>
-
-            <div className="flex justify-between items-baseline">
-              <span className="font-bold text-navy-900 uppercase tracking-wider">
-                Scripture Reading
-              </span>
-              <span className="text-stone-500 italic">Zion San Agustin</span>
-            </div>
-
-            <div className="flex justify-between items-baseline">
-              <span className="font-bold text-navy-900 uppercase tracking-wider">
-                Eulogy
-              </span>
-              <span className="text-stone-500 italic">Jason San Agustin</span>
-            </div>
-
-            <div className="flex justify-between items-baseline">
-              <span className="font-bold text-navy-900 uppercase tracking-wider">
-                Video Tribute
-              </span>
-              <span className="text-stone-500 italic"></span>
-            </div>
-
-            <div className="flex justify-between items-baseline">
-              <span className="font-bold text-navy-900 uppercase tracking-wider">
-                Homily
-              </span>
-              <span className="text-stone-500 italic">Pastor Rob Novak</span>
-            </div>
-
-            <div className="flex justify-between items-baseline">
-              <span className="font-bold text-navy-900 uppercase tracking-wider">
-                Musical Selection
-              </span>
-              <span className="text-stone-500 italic">Amazing Grace</span>
-            </div>
+            {MEMORIAL_DATA.program.orderOfService.items.map((item, index) => (
+              <div key={index} className="flex justify-between items-baseline">
+                <span className="font-semibold text-navy-900">
+                  {item.title}
+                </span>
+                <div className="flex-1 border-b border-dotted border-stone-300 mx-3 mb-1"></div>
+                <span className="text-stone-600">{item.performedBy}</span>
+              </div>
+            ))}
           </div>
 
-          {/* Prayer */}
-          <div className="mt-auto bg-stone-100 p-5 rounded-lg border border-stone-200">
-            <h4 className="font-bold text-navy-900 uppercase tracking-widest text-xs mb-3 text-center border-b border-stone-200 pb-2">
-              Prayer
-            </h4>
-            <p className="text-[10px] italic text-stone-600 leading-relaxed text-justify">
-              Heavenly Father, We thank You for the life of Your servant, Todd.
-              Thank You for the years he spent loving, serving, protecting, and
-              leading. We ask that You surround his family with Your comfort and
-              peace — the peace that surpasses all understanding.
-            </p>
-            <p className="text-[10px] italic text-stone-600 leading-relaxed text-justify mt-2">
-              As we remember Todd today, may we also remember Your promises:
-              that You are near to the brokenhearted, and that those who trust
-              in You will dwell in Your house forever.
-            </p>
-            <p className="text-[10px] italic text-stone-600 leading-relaxed text-justify mt-2">
-              Lord, receive Todd into Your eternal rest. May his legacy of
-              faith, courage, and love continue to shine through the lives of
-              all who knew him.
-              <br />
-              <span className="block text-right font-bold mt-1 not-italic">
-                In Jesus’ name we pray, Amen.
-              </span>
-            </p>
+          {/* Prayer Section */}
+          <div className="mt-auto">
+            {/* Decorative Divider */}
+            <div className="flex items-center justify-center mb-6">
+              <div className="h-px w-12 bg-gold-500 opacity-40"></div>
+              <div className="mx-3 text-gold-500 opacity-60">✦</div>
+              <div className="h-px w-12 bg-gold-500 opacity-40"></div>
+            </div>
+
+            {/* Title */}
+            <h3 className="font-serif font-bold text-center text-navy-900 uppercase tracking-[0.25em] text-xs mb-4">
+              Prayer of Comfort
+            </h3>
+
+            {/* Prayer Text */}
+            <div className="px-6 text-center">
+              <div className="font-serif text-stone-700 text-[10px] leading-loose italic space-y-3">
+                {MEMORIAL_DATA.program.prayer.paragraphs.map(
+                  (paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  )
+                )}
+              </div>
+
+              {/* Closing */}
+              <div className="mt-4 font-serif text-navy-900 font-bold text-xs uppercase tracking-wide">
+                {MEMORIAL_DATA.program.prayer.closing}
+              </div>
+            </div>
           </div>
         </div>
       </div>
