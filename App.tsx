@@ -1,12 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { MEMORIAL_DATA } from "./constants";
 import { EventCard } from "./components/EventCard";
 import { SectionWrapper } from "./components/SectionWrapper";
 import { Guestbook } from "./components/Guestbook";
 import { RSVPForm } from "./components/RSVPForm";
-import { Heart } from "lucide-react";
+import { PrintableProgram } from "./components/PrintableProgram";
+import { Heart, Printer } from "lucide-react";
 
-const App: React.FC = () => {
+const MainPage: React.FC = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const style = document.createElement("style");
     style.textContent = `
@@ -161,6 +165,28 @@ const App: React.FC = () => {
             {/* Guestbook Section */}
             <Guestbook />
 
+            {/* Printable Program Feature - commented out until finalized */}
+            {/* <div className="mt-8 flex flex-col items-center">
+              <button
+                onClick={() => navigate("/program")}
+                className="group w-full md:w-auto relative overflow-hidden bg-white border border-stone-200 hover:border-gold-500/50 shadow-lg hover:shadow-xl rounded-xl p-1 pr-6 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div className="flex items-center">
+                  <div className="bg-navy-900 text-white p-4 rounded-lg mr-4 group-hover:bg-gold-500 transition-colors duration-300">
+                    <Printer className="w-6 h-6" />
+                  </div>
+                  <div className="text-left py-2">
+                    <span className="block font-serif text-lg font-bold text-navy-900">
+                      View Funeral Program
+                    </span>
+                    <span className="block text-xs text-stone-500 uppercase tracking-wide group-hover:text-gold-600 transition-colors">
+                      Download & Print PDF
+                    </span>
+                  </div>
+                </div>
+              </button>
+            </div> */}
+
             {/* Additional Info / Resources */}
             <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
               <h3 className="font-serif text-xl text-navy-900 mb-3">
@@ -198,6 +224,20 @@ const App: React.FC = () => {
         </footer>
       </div>
     </div>
+  );
+};
+
+const ProgramPage: React.FC = () => {
+  const navigate = useNavigate();
+  return <PrintableProgram onBack={() => navigate("/")} />;
+};
+
+const App: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/program" element={<ProgramPage />} />
+    </Routes>
   );
 };
 
