@@ -236,7 +236,7 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
             </p>
           </div>
 
-          <div className="flex-1 overflow-hidden text-[10px] text-stone-700 leading-[1.6] text-justify pr-2 font-serif space-y-2">
+          <div className="flex-1 overflow-hidden text-[10px] text-stone-700 leading-[1.55] text-justify pr-2 font-serif space-y-2">
             {MEMORIAL_DATA.program.obituary.paragraphs.map(
               (paragraph, index) => {
                 const isLastParagraph =
