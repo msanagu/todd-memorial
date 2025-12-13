@@ -236,7 +236,7 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
             </p>
           </div>
 
-          <div className="flex-1 overflow-hidden text-[10px] text-stone-700 leading-[1.4] text-justify pr-2 font-serif space-y-2">
+          <div className="flex-1 overflow-hidden text-[10px] text-stone-700 leading-[1.6] text-justify pr-2 font-serif space-y-2">
             {MEMORIAL_DATA.program.obituary.paragraphs.map(
               (paragraph, index) => {
                 const isLastParagraph =
@@ -247,7 +247,7 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
                     key={index}
                     className={
                       isLastParagraph
-                        ? "italic font-bold text-navy-900 pt-1"
+                        ? "font-serif text-navy-900 font-semibold text-[10px] tracking-wide"
                         : ""
                     }
                   >
@@ -302,7 +302,7 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
               </div>
 
               {/* Closing */}
-              <div className="mt-4 font-serif text-navy-900 font-bold text-xs uppercase tracking-wide">
+              <div className="mt-4 font-serif text-navy-900 font-bold text-[10px] tracking-wide">
                 {MEMORIAL_DATA.program.prayer.closing}
               </div>
             </div>

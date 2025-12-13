@@ -44,10 +44,11 @@ export const MEMORIAL_DATA: MemorialData = {
     inLieuOfFlowers: {
       title: "In Lieu of Flowers",
       description:
-        "The family encourages supporting Todd's daughter Stephanie & her twins Zion & Zuriel who he helped support.",
+        "The family encourages supporting Todd's daughter Stephanie and his grandchildren Zion & Zuriel whom he loved and faithfully supported.",
       qrCodeUrl:
         "https://www.givesendgo.com/SupportSanAgustinFamily?utm_source=sharelink&utm_medium=copy_link&utm_campaign=SupportSanAgustinFamily",
       qrCodeLabel: "Scan to Support",
+      buttonLabel: "Support the San Agustin Family",
     },
     parkingAndReception: {
       title: "Parking & Reception",

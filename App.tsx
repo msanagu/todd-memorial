@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { MEMORIAL_DATA } from "./constants";
 import { EventCard } from "./components/EventCard";

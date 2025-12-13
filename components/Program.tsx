@@ -1,6 +1,6 @@
 import React from "react";
 import { MEMORIAL_DATA } from "../constants";
-import { ArrowLeft, FileText, Download } from "lucide-react";
+import { ArrowLeft, FileText, Download, HeartHandshake } from "lucide-react";
 
 interface ProgramProps {
   onBack: () => void;
@@ -9,6 +9,12 @@ interface ProgramProps {
 export const Program: React.FC<ProgramProps> = ({ onBack }) => {
   const handleOpenPDF = () => {
     window.open("/Memorial - Todd James San Agustin.pdf", "_blank");
+  };
+  const handleSupportClick = () => {
+    window.open(
+      "https://www.givesendgo.com/SupportSanAgustinFamily?utm_source=sharelink&utm_medium=copy_link&utm_campaign=SupportSanAgustinFamily",
+      "_blank"
+    );
   };
 
   return (
@@ -152,15 +158,14 @@ export const Program: React.FC<ProgramProps> = ({ onBack }) => {
           </p>
 
           <div className="flex flex-col items-center">
-            <div className="bg-white p-4 rounded-lg border-2 border-stone-200 shadow-md">
-              <img
-                src="/qr.png"
-                alt="Support Stephanie"
-                className="w-48 h-48"
-              />
-            </div>
-            <p className="text-stone-500 uppercase tracking-wider text-sm mt-4 font-semibold">
-              {MEMORIAL_DATA.program.inLieuOfFlowers.qrCodeLabel}
+            <p className="text-stone-500 uppercase tracking-wider text-sm  font-semibold">
+              <button
+                onClick={handleSupportClick}
+                className="bg-gold-500 text-navy-900 px-4 py-2 rounded-md font-bold hover:bg-yellow-500 transition-colors flex items-center text-sm"
+              >
+                <HeartHandshake className="w-4 h-4 mr-2" />
+                {MEMORIAL_DATA.program.inLieuOfFlowers.buttonLabel}
+              </button>
             </p>
           </div>
         </div>
@@ -186,7 +191,7 @@ export const Program: React.FC<ProgramProps> = ({ onBack }) => {
             className="inline-flex items-center bg-navy-900 text-white px-8 py-4 rounded-xl font-bold hover:bg-navy-800 transition-colors shadow-lg"
           >
             <FileText className="w-5 h-5 mr-3" />
-            Download Complete Program (PDF)
+            Download Program PDF
           </button>
         </div>
       </div>

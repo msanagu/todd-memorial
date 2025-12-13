@@ -28,6 +28,7 @@ export interface ProgramData {
     description: string;
     qrCodeUrl: string;
     qrCodeLabel: string;
+    buttonLabel: string;
   };
   parkingAndReception: {
     title: string;
