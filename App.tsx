@@ -8,9 +8,17 @@ import { RSVPForm } from "./components/RSVPForm";
 import { PrintableProgram } from "./components/PrintableProgram";
 import { Program } from "./components/Program";
 import { Heart, Printer } from "lucide-react";
+import { trackEvent } from "./utils/analytics";
 
 const MainPage: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  // const handleViewProgram = () => {
+  //   () => navigate("/program");
+  //   trackEvent("view_program", {
+  //     category: "Engagement",
+  //   });
+  // };
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -153,6 +161,11 @@ const MainPage: React.FC = () => {
                       height: "100%",
                     }}
                     title="Memorial Service Livestream"
+                    onLoad={() => {
+                      // Rough approximation of "watched" since we can't easily hook into Vimeo iframe events without their SDK
+                      // This just tracks that the iframe loaded successfully
+                      trackEvent("livestream_load", { category: "Engagement" });
+                    }}
                   />
                 </div>
               </div>
@@ -169,7 +182,7 @@ const MainPage: React.FC = () => {
             {/* Program Feature - commented out until finalized */}
             {/* <div className="mt-8 flex flex-col items-center">
               <button
-                onClick={() => navigate("/program")}
+                onClick={handleViewProgram}
                 className="group w-full md:w-auto relative overflow-hidden bg-white border border-stone-200 hover:border-gold-500/50 shadow-lg hover:shadow-xl rounded-xl p-1 pr-6 transition-all duration-300 transform hover:-translate-y-1"
               >
                 <div className="flex items-center">

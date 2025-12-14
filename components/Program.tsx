@@ -1,6 +1,7 @@
 import React from "react";
 import { MEMORIAL_DATA } from "../constants";
 import { ArrowLeft, FileText, Download, HeartHandshake } from "lucide-react";
+import { trackEvent } from "../utils/analytics";
 
 interface ProgramProps {
   onBack: () => void;
@@ -9,7 +10,11 @@ interface ProgramProps {
 export const Program: React.FC<ProgramProps> = ({ onBack }) => {
   const handleOpenPDF = () => {
     window.open("/Memorial - Todd James San Agustin.pdf", "_blank");
+    trackEvent("open_print_program", {
+      category: "Engagement",
+    });
   };
+
   const handleSupportClick = () => {
     window.open(
       "https://www.givesendgo.com/SupportSanAgustinFamily?utm_source=sharelink&utm_medium=copy_link&utm_campaign=SupportSanAgustinFamily",

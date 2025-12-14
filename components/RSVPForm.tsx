@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { trackEvent } from "../utils/analytics";
 
 export const RSVPForm: React.FC = () => {
   const [step, setStep] = useState<"form" | "success">("form");
@@ -62,6 +63,12 @@ export const RSVPForm: React.FC = () => {
       console.error("Error submitting RSVP:", error);
       alert("Failed to submit RSVP. Please try again.");
     } finally {
+      // Track the successful RSVP
+      trackEvent("rsvp_submit", {
+        category: "Engagement",
+        label: formData.attending === "yes" ? "Attending" : "Not Attending",
+        value: formData.attending === "yes" ? parseInt(formData.guests) : 0,
+      });
       setIsSubmitting(false);
     }
   };

@@ -9,6 +9,7 @@ import {
   onSnapshot,
   Timestamp,
 } from "firebase/firestore";
+import { trackEvent } from "../utils/analytics";
 
 interface GuestMessage {
   id: string;
@@ -71,6 +72,9 @@ export const Guestbook: React.FC = () => {
       console.error("Error adding message:", error);
       alert("Failed to post message. Please try again.");
     } finally {
+      trackEvent("guestbook_sign", {
+        category: "Engagement",
+      });
       setIsSubmitting(false);
     }
   };
