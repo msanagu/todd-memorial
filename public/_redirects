@@ -1,2 +1,0 @@
-# Redirect the random Netlify URL to your custom domain
-https://fancy-melba-541047.netlify.app/*  https://todd-san-agustin-memorial.netlify.app/:splat  301!
