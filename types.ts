@@ -10,6 +10,7 @@ export interface EventDetail {
   time: string;
   location: Location;
   parkingInfo: string;
+  parkingMapImages?: string[];
   notes?: string[];
 }
 

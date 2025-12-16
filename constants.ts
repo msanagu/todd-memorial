@@ -8,7 +8,7 @@ export const MEMORIAL_DATA: MemorialData = {
   photoUrl: "/todd-marines-smaller.jpg",
   burial: {
     title: "Military Honors Burial",
-    time: "11:30 AM",
+    time: "11:00 AM Arrival • 11:30 AM Service",
     location: {
       name: "Miramar National Cemetery",
       address: "5795 Nobel Dr.",
@@ -17,7 +17,8 @@ export const MEMORIAL_DATA: MemorialData = {
         "https://www.google.com/maps/search/?api=1&query=5795+Nobel+Dr,+San+Diego,+CA+92122",
     },
     parkingInfo:
-      "Please arrive 20 minutes early. The service will start promptly.",
+      "Arrive as early as 11:00 AM and no later than 11:15 AM. Turn right from Nobel onto Ave of Flags then take an immediate right after entering the cemetery gates. Park in lane #3, which is the far-right lane. Please pull to the front of the lane and have each vehicle parked directly behind one another in the lane. If you arrive earlier than 11:00 AM, we ask that you park outside of the turnout for the administration building or you may be led to a different service using lane #3. Wait in your car and an attendant will escort all cars to the service area. The service will start promptly at 11:30 AM and lasts only for 30 minutes.",
+    parkingMapImages: ["/cemetery-map-lane-3.png"],
     notes: [],
   },
   service: {
@@ -74,14 +75,15 @@ export const MEMORIAL_DATA: MemorialData = {
     orderOfService: {
       title: "Order of Service",
       items: [
-        { title: "Musical Prelude", performedBy: "Shari San Agustin" },
+        { title: "Musical Prelude", performedBy: "Janet Blair" },
         { title: "Opening Prayer", performedBy: "Pastor Rob Novak" },
         { title: "Scripture Reading", performedBy: "Family & Friends" },
         { title: "Words of Remembrance", performedBy: "Family & Friends" },
+        { title: "Musical Selection", performedBy: "Shari San Agustin" },
         { title: "Eulogy", performedBy: "Jason San Agustin" },
-        { title: "Video Tribute" },
+        { title: "Video Tribute", performedBy: "--" },
         { title: "Homily", performedBy: "Pastor Rob Novak" },
-        { title: "Musical Selection", performedBy: "Amazing Grace" },
+        { title: "Musical Selection", performedBy: "Janet Blair" },
       ],
     },
     prayer: {
