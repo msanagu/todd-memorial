@@ -6,19 +6,20 @@ import { SectionWrapper } from "./components/SectionWrapper";
 import { Guestbook } from "./components/Guestbook";
 import { RSVPForm } from "./components/RSVPForm";
 import { PrintableProgram } from "./components/PrintableProgram";
+import { PrintableParkingInfo } from "./components/PrintableParkingInfo";
 import { Program } from "./components/Program";
 import { Heart, Printer } from "lucide-react";
 import { trackEvent } from "./utils/analytics";
 
 const MainPage: React.FC = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleViewProgram = () => {
-  //   () => navigate("/program");
-  //   trackEvent("view_program", {
-  //     category: "Engagement",
-  //   });
-  // };
+  const handleViewProgram = () => {
+    navigate("/program");
+    trackEvent("view_program", {
+      category: "Engagement",
+    });
+  };
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -131,6 +132,28 @@ const MainPage: React.FC = () => {
               </div>
             </div>
 
+            {/* Program Feature - commented out until finalized */}
+            <div className="mt-8 flex flex-col items-center animate-on-scroll">
+              <button
+                onClick={handleViewProgram}
+                className="group w-full md:w-auto relative overflow-hidden bg-white border border-stone-200 hover:border-gold-500/50 shadow-lg hover:shadow-xl rounded-xl p-1 pr-6 transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div className="flex items-center">
+                  <div className="bg-navy-900 text-white p-4 rounded-lg mr-4 group-hover:bg-gold-500 transition-colors duration-300">
+                    <Printer className="w-6 h-6" />
+                  </div>
+                  <div className="text-left py-2">
+                    <span className="block font-serif text-lg font-bold text-navy-900">
+                      View Funeral Program
+                    </span>
+                    <span className="block text-xs text-stone-500 uppercase tracking-wide group-hover:text-gold-600 transition-colors">
+                      Download & Print PDF
+                    </span>
+                  </div>
+                </div>
+              </button>
+            </div>
+
             {/* Livestream Section */}
             <div className="mt-8 mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
               <div className="p-6 bg-stone-50 border-b border-stone-100">
@@ -147,7 +170,9 @@ const MainPage: React.FC = () => {
               </div>
               <div className="bg-black">
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+                  {/* Vimeo embed link will be different for each service */}
                   <iframe
+                    // src="https://vimeo.com/event/<first-service>/embed" --- IGNORE ---
                     src="https://vimeo.com/event/5581149/embed"
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
@@ -178,28 +203,6 @@ const MainPage: React.FC = () => {
 
             {/* Guestbook Section */}
             <Guestbook />
-
-            {/* Program Feature - commented out until finalized */}
-            {/* <div className="mt-8 flex flex-col items-center">
-              <button
-                onClick={handleViewProgram}
-                className="group w-full md:w-auto relative overflow-hidden bg-white border border-stone-200 hover:border-gold-500/50 shadow-lg hover:shadow-xl rounded-xl p-1 pr-6 transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <div className="flex items-center">
-                  <div className="bg-navy-900 text-white p-4 rounded-lg mr-4 group-hover:bg-gold-500 transition-colors duration-300">
-                    <Printer className="w-6 h-6" />
-                  </div>
-                  <div className="text-left py-2">
-                    <span className="block font-serif text-lg font-bold text-navy-900">
-                      View Funeral Program
-                    </span>
-                    <span className="block text-xs text-stone-500 uppercase tracking-wide group-hover:text-gold-600 transition-colors">
-                      Download & Print PDF
-                    </span>
-                  </div>
-                </div>
-              </button>
-            </div> */}
 
             {/* Additional Info / Resources */}
             <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
@@ -251,12 +254,18 @@ const PrintProgramPage: React.FC = () => {
   return <PrintableProgram onBack={() => navigate("/")} />;
 };
 
+const PrintParkingPage: React.FC = () => {
+  const navigate = useNavigate();
+  return <PrintableParkingInfo onBack={() => navigate("/")} />;
+};
+
 const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/program" element={<ProgramPage />} />
       <Route path="/print-program" element={<PrintProgramPage />} />
+      <Route path="/print-parking-info" element={<PrintParkingPage />} />
     </Routes>
   );
 };

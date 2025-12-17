@@ -170,35 +170,35 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
         {/* === FRONT COVER (Right Half) === */}
         <div className="w-[5.5in] h-full relative bg-navy-900 text-white flex flex-col items-center">
           {/* Photo Section */}
-          <div className="w-full h-[60%] relative overflow-hidden">
+          <div className="w-full h-[70%] relative overflow-hidden flex items-end">
             <img
               src={MEMORIAL_DATA.photoUrl}
               alt={MEMORIAL_DATA.name}
               className="w-full h-full object-cover object-top opacity-90"
+              style={{ maxHeight: "100%", maxWidth: "100%" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>
           </div>
 
-          {/* Text Section */}
-          <div className="w-full h-[40%] px-10 flex flex-col items-center justify-center relative">
+          {/* Navy Block Section */}
+          <div className="w-full h-[30%] bg-navy-900 flex flex-col items-center justify-center px-8 relative">
             {/* Decorative Horizontal Line */}
-            <div className="w-16 h-1 bg-gold-500 mb-6"></div>
+            <div className="w-12 h-1 bg-gold-500 mb-4"></div>
 
-            <p className="font-serif italic text-gold-500 text-lg mb-2">
+            <p className="font-serif italic text-gold-500 text-base mb-1">
               Honoring the Life of
             </p>
 
-            <h1 className="font-serif text-3xl font-bold text-center leading-tight tracking-wide mb-3">
+            <h1 className="font-serif text-2xl font-bold text-center leading-tight tracking-wide mb-2">
               {MEMORIAL_DATA.name}
             </h1>
 
-            <div className="flex items-center gap-3 text-sm font-medium tracking-widest uppercase text-stone-300 mb-6">
+            <div className="flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-stone-300 mb-4">
               <span>{MEMORIAL_DATA.dob}</span>
               <span className="text-gold-500">•</span>
               <span>{MEMORIAL_DATA.dod}</span>
             </div>
 
-            <div className="text-center text-xs text-stone-400 font-medium uppercase tracking-wide">
+            <div className="text-center text-[10px] text-stone-400 font-medium uppercase tracking-wide">
               <p>{MEMORIAL_DATA.service.location.name}</p>
               <p>
                 {MEMORIAL_DATA.serviceDate} at {MEMORIAL_DATA.service.time}
