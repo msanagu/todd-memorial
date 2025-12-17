@@ -5,12 +5,17 @@ export interface Location {
   mapLink: string;
 }
 
+export interface MapImage {
+  src: string;
+  caption?: string;
+}
+
 export interface EventDetail {
   title: string;
   time: string;
   location: Location;
   parkingInfo: string;
-  parkingMapImages?: string[];
+  parkingMapImages?: MapImage[];
   notes?: string[];
 }
 

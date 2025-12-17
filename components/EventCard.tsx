@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import { EventDetail } from "../types";
+import { EventDetail, MapImage } from "../types";
 import {
   MapPin,
   Clock,
@@ -45,6 +45,13 @@ export const EventCard: React.FC<EventCardProps> = ({
     e.stopPropagation();
     setIsZoomed(!isZoomed);
   };
+
+  // Normalize images to always be objects with url and optional caption
+  const images: MapImage[] = event.parkingMapImages
+    ? event.parkingMapImages.map((img) =>
+        typeof img === "string" ? { url: img } : img
+      )
+    : [];
 
   return (
     <>
@@ -116,20 +123,19 @@ export const EventCard: React.FC<EventCardProps> = ({
                   </p>
 
                   {/* Map Images List */}
-                  {event.parkingMapImages &&
-                    event.parkingMapImages.length > 0 && (
-                      <div className="space-y-4 mt-3">
-                        {event.parkingMapImages.map((url, idx) => (
+                  {images.length > 0 && (
+                    <div className="space-y-6 mt-3">
+                      {images.map((img, idx) => (
+                        <div key={idx} className="flex flex-col">
                           <div
-                            key={idx}
                             className="relative rounded-lg overflow-hidden border border-stone-200 shadow-sm cursor-pointer group hover:shadow-md transition-all"
                             onClick={(e) => {
                               e.stopPropagation();
-                              setSelectedImage(url);
+                              setSelectedImage(img.src);
                             }}
                           >
                             <img
-                              src={url}
+                              src={img.src}
                               alt={`Parking Map ${idx + 1}`}
                               className="w-full h-auto object-cover block"
                             />
@@ -141,12 +147,16 @@ export const EventCard: React.FC<EventCardProps> = ({
                               </div>
                             </div>
                           </div>
-                        ))}
-                        <p className="text-[10px] text-stone-400 mt-1 text-center uppercase tracking-widest">
-                          Tap map to enlarge
-                        </p>
-                      </div>
-                    )}
+                          {/* Individual Caption */}
+                          {img.caption && (
+                            <p className="text-[10px] text-stone-400 mt-2 text-center uppercase tracking-widest font-medium">
+                              {img.caption}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 

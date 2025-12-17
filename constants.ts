@@ -18,7 +18,9 @@ export const MEMORIAL_DATA: MemorialData = {
     },
     parkingInfo:
       "Arrive as early as 11:00 AM and no later than 11:15 AM. Turn right from Nobel onto Ave of Flags then take an immediate right after entering the cemetery gates. Park in lane #3, which is the far-right lane. Please pull to the front of the lane and have each vehicle parked directly behind one another in the lane. If you arrive earlier than 11:00 AM, we ask that you park outside of the turnout for the administration building or you may be led to a different service using lane #3. Wait in your car and an attendant will escort all cars to the service area. The service will start promptly at 11:30 AM and lasts only for 30 minutes.",
-    parkingMapImages: ["/cemetery-map-lane-3.png"],
+    parkingMapImages: [
+      { src: "/cemetery-map-lane-3.png", caption: "Tap to enlarge map" },
+    ],
     notes: [],
   },
   service: {
@@ -33,7 +35,10 @@ export const MEMORIAL_DATA: MemorialData = {
     },
     parkingInfo:
       "In addition to metered street parking there are dedicated parking lots available on both the north east and south west corners of 3rd and Elm. Enter Lot A going north on 3rd Ave. Enter Lot B going west on Elm St. Both lots are a short walk to the chapel entrance on 4th Ave.",
-    parkingMapImages: ["/first-pres-map.png", "/chapel-entrance.png"],
+    parkingMapImages: [
+      { src: "/first-pres-map.png", caption: "Tap to enlarge map" },
+      { src: "/chapel-entrance.png", caption: "Chapel Entrance on 4th Ave" },
+    ],
     notes: [
       "Reception with light fare to follow immediately after the service in the foyer.",
     ],
