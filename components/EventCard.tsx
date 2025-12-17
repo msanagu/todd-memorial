@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { EventDetail } from "../types";
 import {
   MapPin,
@@ -10,6 +11,8 @@ import {
   Navigation,
   Maximize2,
   X,
+  ZoomIn,
+  ZoomOut,
 } from "lucide-react";
 import { trackEvent } from "../utils/analytics";
 
@@ -24,12 +27,23 @@ export const EventCard: React.FC<EventCardProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(isFirst);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const handleGetDirections = () => {
     trackEvent("click_directions", {
       category: "Navigation",
       label: event.location.name,
     });
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    setIsZoomed(false);
+  };
+
+  const toggleZoom = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsZoomed(!isZoomed);
   };
 
   return (
@@ -157,34 +171,66 @@ export const EventCard: React.FC<EventCardProps> = ({
           </div>
         </div>
       </div>
-      {/* Full Screen Image Modal */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-2 md:p-8 backdrop-blur-sm animate-in fade-in duration-200"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-5xl max-h-screen w-full flex items-center justify-center h-full">
-            <img
-              src={selectedImage}
-              alt="Map Full View"
-              className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded-md shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <button
-              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors z-50 backdrop-blur-md"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedImage(null);
-              }}
+
+      {/* Full Screen Image Modal via Portal */}
+      {selectedImage &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] bg-black flex flex-col animate-in fade-in duration-300"
+            onClick={closeLightbox}
+          >
+            {/* Toolbar */}
+            <div className="absolute top-0 left-0 right-0 p-4 flex justify-end items-center z-20 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">
+              <button
+                className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors backdrop-blur-md pointer-events-auto"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeLightbox();
+                }}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Image Container - Scrollable when zoomed */}
+            <div
+              className="flex-1 w-full h-full overflow-auto flex items-center justify-center touch-pan-x touch-pan-y"
+              onClick={closeLightbox}
             >
-              <X className="w-6 h-6" />
-            </button>
-            <p className="absolute bottom-6 left-0 right-0 text-center text-white/50 text-xs pointer-events-none">
-              Tap background to close
-            </p>
-          </div>
-        </div>
-      )}
+              <img
+                src={selectedImage}
+                alt="Map Full View"
+                className={`
+                 transition-all duration-300 ease-out select-none shadow-2xl
+                 ${
+                   isZoomed
+                     ? "min-w-[150%] md:min-w-[120%] cursor-grab active:cursor-grabbing object-cover"
+                     : "max-w-full max-h-full object-contain cursor-zoom-in p-1"
+                 }
+               `}
+                onClick={toggleZoom}
+              />
+            </div>
+
+            {/* Bottom Hint */}
+            <div className="absolute bottom-10 left-0 right-0 flex justify-center pointer-events-none z-20">
+              <div className="bg-stone-900/80 text-white/90 px-5 py-2.5 rounded-full text-sm backdrop-blur-md border border-white/10 flex items-center shadow-xl animate-in slide-in-from-bottom-4 fade-in duration-500">
+                {isZoomed ? (
+                  <>
+                    <ZoomOut className="w-4 h-4 mr-2" />
+                    Tap to fit screen
+                  </>
+                ) : (
+                  <>
+                    <ZoomIn className="w-4 h-4 mr-2" />
+                    Tap or Pinch to Zoom
+                  </>
+                )}
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 };
