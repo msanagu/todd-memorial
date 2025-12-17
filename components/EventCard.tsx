@@ -224,7 +224,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                 ) : (
                   <>
                     <ZoomIn className="w-4 h-4 mr-2" />
-                    Tap or Pinch to Zoom
+                    Tap to zoom
                   </>
                 )}
               </div>
