@@ -31,10 +31,10 @@ export const MEMORIAL_DATA: MemorialData = {
       address: "1735 4th Ave.",
       cityStateZip: "San Diego, CA 92101",
       mapLink:
-        "https://www.google.com/maps/search/?api=1&query=1735+4th+Ave,+San+Diego,+CA+92101",
+        "https://www.google.com/maps/search/?api=1&query=1740+4th+Ave,+San+Diego,+CA+92101",
     },
     parkingInfo:
-      "In addition to metered street parking there are dedicated parking lots available on both the north east and south west corners of 3rd and Elm. Enter Lot A going north on 3rd Ave. Enter Lot B going west on Elm St. Both lots are a short walk to the chapel entrance on 4th Ave.",
+      "In addition to metered street parking there are dedicated parking lots available on both the north east and south west corners of 3rd and Elm. Enter Lots A or B going north on 3rd Ave. Enter Lot C going west on Elm St. All lots are a short walk to the chapel entrance on 4th Ave.",
     parkingMapImages: [
       { src: "/first-pres-map.png", caption: "Tap to enlarge map" },
       { src: "/chapel-entrance.png", caption: "Chapel Entrance on 4th Ave" },
@@ -92,7 +92,7 @@ export const MEMORIAL_DATA: MemorialData = {
     prayer: {
       title: "Prayer",
       paragraphs: [
-        "Heavenly Father, we thank You for the life of Your servant, Todd. Thank You for the years he spent loving, serving, protecting, and leading. We ask that You surround his familywith Your comfort and peace.",
+        "Heavenly Father, we thank You for the life of Your servant, Todd. Thank You for the years he spent loving, serving, protecting, and leading. We ask that You surround his family with Your comfort and peace.",
         "As we remember Todd today, may we also remember Your promises: that You are near to the brokenhearted, and that those who trust in You will dwell in Your house forever.",
         "Lord, receive Todd into Your eternal rest. May his legacy of faith, courage, and love continue to shine through the lives of all who knew him.",
       ],
