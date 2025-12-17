@@ -143,7 +143,7 @@ export const EventCard: React.FC<EventCardProps> = ({
                           </div>
                         ))}
                         <p className="text-[10px] text-stone-400 mt-1 text-center uppercase tracking-widest">
-                          Tap maps to enlarge
+                          Tap map to enlarge
                         </p>
                       </div>
                     )}
@@ -157,13 +157,14 @@ export const EventCard: React.FC<EventCardProps> = ({
                     <h4 className="font-bold text-stone-800 text-sm uppercase tracking-wide mb-1">
                       Important Notes
                     </h4>
-                    <ul className="list-disc list-inside text-stone-600 text-sm">
-                      {event.notes.map((note, idx) => (
-                        <li key={idx} className="mb-1">
-                          {note}
-                        </li>
-                      ))}
-                    </ul>
+                    {event.notes.map((note, idx) => (
+                      <p
+                        key={idx}
+                        className="text-stone-600 text-sm leading-relaxed mb-4"
+                      >
+                        {note}
+                      </p>
+                    ))}
                   </div>
                 </div>
               )}

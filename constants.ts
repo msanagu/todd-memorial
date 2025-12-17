@@ -32,9 +32,10 @@ export const MEMORIAL_DATA: MemorialData = {
         "https://www.google.com/maps/search/?api=1&query=1735+4th+Ave,+San+Diego,+CA+92101",
     },
     parkingInfo:
-      "Street parking is limited in this area. There is a dedicated parking lot available on the corner of 3rd and Elm.",
+      "In addition to metered street parking there are dedicated parking lots available on both the north east and south west corners of 3rd and Elm. Enter Lot A going north on 3rd Ave. Enter Lot B going west on Elm St. Both lots are a short walk to the chapel entrance on 4th Ave.",
+    parkingMapImages: ["/first-pres-map.png"],
     notes: [
-      "Reception with light fare to follow immediately after the service.",
+      "Reception with light fare to follow immediately after the service in the foyer.",
     ],
   },
   program: {
