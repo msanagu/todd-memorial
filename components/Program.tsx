@@ -183,8 +183,7 @@ export const Program: React.FC<ProgramProps> = ({ onBack }) => {
 
           <div className="text-center space-y-2">
             <p className="text-sm">
-              Parking is available in the lot at the corner of 3rd and Elm.
-              Reception with light fare immediately following the service.
+              {MEMORIAL_DATA.program.parkingAndReception.text}
             </p>
           </div>
         </div>

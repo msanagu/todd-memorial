@@ -236,24 +236,10 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
             </p>
           </div>
 
-          <div className="flex-1 overflow-hidden text-[10px] text-stone-700 leading-[1.55] text-justify pr-2 font-serif space-y-2">
+          <div className="flex-1 overflow-hidden text-[9.5px] text-stone-700 leading-[1.55] text-justify pr-2 font-serif space-y-2">
             {MEMORIAL_DATA.program.obituary.paragraphs.map(
               (paragraph, index) => {
-                const isLastParagraph =
-                  index ===
-                  MEMORIAL_DATA.program.obituary.paragraphs.length - 1;
-                return (
-                  <p
-                    key={index}
-                    className={
-                      isLastParagraph
-                        ? "font-serif text-navy-900 font-semibold text-[10px] tracking-wide"
-                        : ""
-                    }
-                  >
-                    {paragraph}
-                  </p>
-                );
+                return <p key={index}>{paragraph}</p>;
               }
             )}
           </div>
