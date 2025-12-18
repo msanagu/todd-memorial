@@ -34,7 +34,7 @@ export const MEMORIAL_DATA: MemorialData = {
         "https://www.google.com/maps/search/?api=1&query=1740+4th+Ave,+San+Diego,+CA+92101",
     },
     parkingInfo:
-      "In addition to metered street parking there are dedicated parking lots available on both the north east and south west corners of 3rd and Elm. Enter Lots A or B going north on 3rd Ave. Enter Lot C going west on Elm St. All lots are a short walk to the chapel entrance on 4th Ave.",
+      "In addition to metered street parking, there are dedicated parking lots available on both the northeast and southwest corners of 3rd and Elm. These lots are marked as private paid lots but will be free for all attendees on the day of the event. Enter Lots A or B going north on 3rd Ave. Enter Lot C going west on Elm St. All lots are a short walk to the chapel entrance on 4th Ave.",
     parkingMapImages: [
       { src: "/first-pres-map.png", caption: "Tap to enlarge map" },
       { src: "/chapel-entrance.png", caption: "Chapel Entrance on 4th Ave" },
@@ -57,9 +57,9 @@ export const MEMORIAL_DATA: MemorialData = {
       qrCodeLabel: "Scan to Support",
       buttonLabel: "Support the San Agustin Family",
     },
-    parkingAndReception: {
-      title: "Parking & Reception",
-      text: "Parking is available in the lots on both the north east and south west corners of 3rd and Elm.\nReception with light fare immediately following the service in the foyer.",
+    reception: {
+      title: "Reception",
+      text: "Reception with light fare immediately following the service in the foyer.",
     },
     obituary: {
       title: "Todd James San Agustin",
@@ -84,7 +84,7 @@ export const MEMORIAL_DATA: MemorialData = {
         { title: "Words of Remembrance", performedBy: "Family & Friends" },
         { title: "Musical Selection", performedBy: "Shari San Agustin" },
         { title: "Eulogy", performedBy: "Jason San Agustin" },
-        { title: "Video Tribute", performedBy: "--" },
+        { title: "Video Tribute", performedBy: "" },
         { title: "Homily", performedBy: "Pastor Rob Novak" },
         { title: "Musical Selection", performedBy: "Janet Blair" },
       ],

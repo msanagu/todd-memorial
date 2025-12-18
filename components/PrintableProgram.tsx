@@ -149,17 +149,16 @@ export const PrintableProgram: React.FC<PrintableProgramProps> = ({
 
           <div className="mb-4 text-center">
             <h4 className="text-xs font-bold text-navy-900 uppercase tracking-widest mb-1">
-              {MEMORIAL_DATA.program.parkingAndReception.title}
+              {MEMORIAL_DATA.program.reception.title}
             </h4>
             <p className="text-[10px] text-stone-600 font-sans leading-relaxed">
-              {MEMORIAL_DATA.program.parkingAndReception.text
+              {MEMORIAL_DATA.program.reception.text
                 .split("\n")
                 .map((line, i) => (
                   <React.Fragment key={i}>
                     {line}
                     {i <
-                      MEMORIAL_DATA.program.parkingAndReception.text.split("\n")
-                        .length -
+                      MEMORIAL_DATA.program.reception.text.split("\n").length -
                         1 && <br />}
                   </React.Fragment>
                 ))}

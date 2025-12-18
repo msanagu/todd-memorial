@@ -36,7 +36,7 @@ export interface ProgramData {
     qrCodeLabel: string;
     buttonLabel: string;
   };
-  parkingAndReception: {
+  reception: {
     title: string;
     text: string;
   };

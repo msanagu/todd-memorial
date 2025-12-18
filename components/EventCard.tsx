@@ -8,6 +8,7 @@ import {
   Car,
   ChevronDown,
   ChevronUp,
+  Coffee,
   Navigation,
   Maximize2,
   X,
@@ -162,10 +163,10 @@ export const EventCard: React.FC<EventCardProps> = ({
 
               {event.notes && event.notes.length > 0 && (
                 <div className="flex items-start mt-4 pt-4 border-t border-stone-200">
-                  <Info className="w-5 h-5 mr-2 text-stone-500 mt-1 shrink-0" />
+                  <Coffee className="w-5 h-5 mr-2 text-stone-500 mt-1 shrink-0" />
                   <div>
                     <h4 className="font-bold text-stone-800 text-sm uppercase tracking-wide mb-1">
-                      Important Notes
+                      Reception
                     </h4>
                     {event.notes.map((note, idx) => (
                       <p

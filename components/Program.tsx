@@ -182,9 +182,7 @@ export const Program: React.FC<ProgramProps> = ({ onBack }) => {
           </h2>
 
           <div className="text-center space-y-2">
-            <p className="text-sm">
-              {MEMORIAL_DATA.program.parkingAndReception.text}
-            </p>
+            <p className="text-sm">{MEMORIAL_DATA.program.reception.text}</p>
           </div>
         </div>
 
