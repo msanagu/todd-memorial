@@ -5,10 +5,10 @@ import { EventCard } from "./components/EventCard";
 import { SectionWrapper } from "./components/SectionWrapper";
 import { Guestbook } from "./components/Guestbook";
 import { RSVPForm } from "./components/RSVPForm";
+import { Program } from "./components/Program";
 import { PrintableProgram } from "./components/PrintableProgram";
 import { PrintableParkingInfo } from "./components/PrintableParkingInfo";
 import { VimeoThumbnail } from "./components/VimeoThumbnail";
-import { Program } from "./components/Program";
 import { Heart, Printer, Clock } from "lucide-react";
 import { trackEvent } from "./utils/analytics";
 
@@ -25,22 +25,26 @@ const MainPage: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Helper to parse the custom date format "December 19th, 2025" and time "11:30 AM"
+  // Determines if the selected event (burial or service) is currently live
+  // by comparing the current time to the event's scheduled start time.
   const isEventLive = useMemo(() => {
+    // Select the correct event based on the active stream
     const event =
       activeStream === "burial" ? MEMORIAL_DATA.burial : MEMORIAL_DATA.service;
 
     try {
-      // Clean "19th" -> "19"
+      // Clean up the service date string to ensure correct parsing
       const dateClean = MEMORIAL_DATA.serviceDate.replace(
         /(st|nd|rd|th),/,
         ","
       );
+      // Combine date and event time, assume PST timezone
       const dateTimeStr = `${dateClean} ${event.time} PST`;
       const startTime = new Date(dateTimeStr);
-
+      // Return true if the current time is after the event start time
       return now >= startTime;
     } catch (e) {
+      // If parsing fails, log error and return false
       console.error("Date parsing error:", e);
       return false;
     }
@@ -48,26 +52,23 @@ const MainPage: React.FC = () => {
 
   const handleViewProgram = () => {
     navigate("/program");
-    trackEvent("view_program", {
-      category: "Engagement",
-    });
+    trackEvent("view_program", { category: "Engagement" });
   };
 
   useEffect(() => {
+    // Add stable transition styles
     const style = document.createElement("style");
     style.textContent = `
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(24px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
       }
       .animate-in {
-        animation: fadeUp 2.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
       }
     `;
     document.head.appendChild(style);
@@ -77,23 +78,31 @@ const MainPage: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-in");
+            observer.unobserve(entry.target); // Reveal once
           }
         });
       },
-      { threshold: 0.15 }
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -75px 0px",
+      }
     );
 
-    document.querySelectorAll(".animate-on-scroll").forEach((el, index) => {
-      (el as HTMLElement).style.animationDelay = `${index * 0.08}s`;
-      observer.observe(el);
-    });
+    // Initial check for elements already in view
+    setTimeout(() => {
+      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+        observer.observe(el);
+      });
+    }, 100);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (style.parentNode) style.parentNode.removeChild(style);
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-[#F9F8F6] font-sans selection:bg-navy-900 selection:text-white">
-      {/* Background Flag Effect - subtle overlay */}
       <div
         className="fixed inset-0 z-0 opacity-5 pointer-events-none"
         style={{
@@ -105,12 +114,10 @@ const MainPage: React.FC = () => {
       />
 
       <div className="max-w-2xl mx-auto relative z-10 shadow-2xl min-h-screen bg-white/95 backdrop-blur-sm sm:my-8 sm:rounded-xl overflow-hidden border-t-8 border-navy-900 w-full">
-        {/* Header / Hero Section */}
+        {/* Header Section - Name, Dates, and Portrait */}
         <header className="relative text-center pt-12 pb-8 px-6 bg-gradient-to-b from-white to-[#F0F0F0]">
-          {/* Decorative Top Line */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gold-500 opacity-50"></div>
 
-          {/* Name & Title */}
           <SectionWrapper>
             <h1 className="font-serif text-4xl md:text-5xl text-navy-900 tracking-tight leading-tight mb-2 animate-on-scroll">
               <span className="block font-medium">TODD JAMES</span>
@@ -123,7 +130,6 @@ const MainPage: React.FC = () => {
               <span>{MEMORIAL_DATA.dod}</span>
             </div>
 
-            {/* Photo with Frame */}
             <div className="relative mx-auto w-64 h-80 md:w-72 md:h-96 shadow-2xl rounded-sm p-2 bg-white animate-on-scroll">
               <div className="absolute inset-0 border border-stone-200 m-2 pointer-events-none"></div>
               <img
@@ -135,22 +141,23 @@ const MainPage: React.FC = () => {
           </SectionWrapper>
         </header>
 
-        {/* Date Highlight - Static Flow */}
+        {/* Service Date Banner */}
         <div className="bg-navy-900 text-white text-center py-4 px-4 relative z-20 shadow-md animate-on-scroll">
           <p className="font-serif text-xl md:text-2xl tracking-wide">
             {MEMORIAL_DATA.serviceDate}
           </p>
         </div>
 
-        {/* Main Content */}
+        {/* Main Content Area */}
         <main className="p-4 md:p-4 bg-[#FDFBF7]">
           <SectionWrapper className="max-w-xl mx-auto">
+            {/* Invitation Text */}
             <p className="text-center text-stone-600 italic font-serif mb-8 text-lg animate-on-scroll">
               The family invites you to join them in honoring the life and
               service of Todd James San Agustin.
             </p>
 
-            {/* Timeline Line */}
+            {/* Events Timeline */}
             <div className="relative">
               <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-stone-200 hidden md:block"></div>
 
@@ -164,7 +171,7 @@ const MainPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Program Feature - commented out until finalized */}
+            {/* View Program Button */}
             <div className="my-8 flex flex-col items-center animate-on-scroll">
               <button
                 onClick={handleViewProgram}
@@ -208,7 +215,7 @@ const MainPage: React.FC = () => {
                           : "text-stone-500 hover:text-navy-900"
                       }`}
                     >
-                      Military Honors Burial
+                      Honors Burial
                     </button>
                     <button
                       onClick={() => setActiveStream("service")}
@@ -225,7 +232,6 @@ const MainPage: React.FC = () => {
               </div>
 
               <div className="bg-black relative">
-                {/* Dynamic Status Indicator */}
                 <div className="absolute top-4 left-4 z-10 flex items-center bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                   <span className="flex h-2 w-2 mr-2 relative">
                     {isEventLive ? (
@@ -266,12 +272,6 @@ const MainPage: React.FC = () => {
                       height: "100%",
                     }}
                     title={`${activeStream} Livestream`}
-                    onLoad={() =>
-                      trackEvent("livestream_load", {
-                        category: "Engagement",
-                        label: activeStream,
-                      })
-                    }
                   />
                 </div>
               </div>
@@ -346,7 +346,7 @@ const MainPage: React.FC = () => {
               </div>
             </div>
 
-            {/* RSVP Section - Placed after details, before livestream */}
+            {/* RSVP Form Section */}
             <div className="mt-8 animate-on-scroll">
               <RSVPForm />
             </div>
@@ -356,15 +356,14 @@ const MainPage: React.FC = () => {
               <Guestbook />
             </div>
 
-            {/* Additional Info / Resources */}
+            {/* Family Gratitude Section */}
             <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
               <h3 className="font-serif text-xl text-navy-900 mb-3">
                 Family Gratitude
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed mb-4">
                 We are deeply grateful for the outpouring of love, prayers, and
-                support during this difficult time. Your kindness has been a
-                comfort to us all.
+                support during this difficult time.
               </p>
               <div className="flex justify-center text-navy-900 opacity-50">
                 <Heart className="w-6 h-6 fill-current" />
@@ -373,6 +372,7 @@ const MainPage: React.FC = () => {
           </SectionWrapper>
         </main>
 
+        {/* Footer Section */}
         <footer className="relative text-center py-12 px-6 bg-white border-t border-stone-100 overflow-hidden">
           <div className="relative z-10">
             <p className="text-stone-400 text-xs tracking-widest uppercase mb-2">
@@ -396,34 +396,27 @@ const MainPage: React.FC = () => {
   );
 };
 
-const ProgramPage: React.FC = () => {
-  const navigate = useNavigate();
-  return <Program onBack={() => navigate("/")} />;
-};
-
-const PrintProgramPage: React.FC = () => {
-  const navigate = useNavigate();
-  return <PrintableProgram onBack={() => navigate("/")} />;
-};
-
-const PrintParkingPage: React.FC = () => {
-  const navigate = useNavigate();
-  return <PrintableParkingInfo onBack={() => navigate("/")} />;
-};
-
-const VimeoThumbnailPage: React.FC = () => {
-  const navigate = useNavigate();
-  return <VimeoThumbnail onBack={() => navigate("/")} />;
-};
-
 const App: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/program" element={<ProgramPage />} />
-      <Route path="/print-program" element={<PrintProgramPage />} />
-      <Route path="/print-parking-info" element={<PrintParkingPage />} />
-      <Route path="/vimeo-thumbnail" element={<VimeoThumbnailPage />} />
+      <Route
+        path="/program"
+        element={<Program onBack={() => navigate("/")} />}
+      />
+      <Route
+        path="/print-program"
+        element={<PrintableProgram onBack={() => navigate("/")} />}
+      />
+      <Route
+        path="/print-parking-info"
+        element={<PrintableParkingInfo onBack={() => navigate("/")} />}
+      />
+      <Route
+        path="/vimeo-thumbnail"
+        element={<VimeoThumbnail onBack={() => navigate("/")} />}
+      />
     </Routes>
   );
 };
