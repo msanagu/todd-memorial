@@ -5,6 +5,7 @@ import {
   Smartphone,
   Users,
   CalendarCheck,
+  X,
 } from "lucide-react";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
@@ -73,30 +74,66 @@ export const RSVPForm: React.FC = () => {
     }
   };
 
+  // Helper to format phone numbers as (555) 555-5555
+  function formatPhone(phone: string) {
+    const cleaned = ("" + phone).replace(/\D/g, "");
+    const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return `(${match[1]}) ${match[2]}-${match[3]}`;
+    }
+    return phone;
+  }
+
   if (step === "success") {
     return (
-      <div className="bg-white rounded-xl shadow-lg border-l-4 border-gold-500 p-8 mb-8 text-center animate-in fade-in zoom-in duration-300">
-        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
-          <CheckCircle className="h-6 w-6 text-green-600" />
+      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-8 shadow-sm animate-in fade-in slide-in-from-top-2 duration-500">
+        <div className="flex items-start gap-4">
+          <div className="bg-emerald-100 p-2.5 rounded-full shrink-0">
+            <CheckCircle className="w-5 h-5 text-emerald-600" />
+          </div>
+          <div className="flex-1">
+            <div className="flex justify-between items-start">
+              <h3 className="text-emerald-900 font-bold text-lg leading-tight mb-3">
+                RSVP Confirmed
+              </h3>
+              <button
+                onClick={() => setStep("form")}
+                className="text-emerald-400 hover:text-emerald-600 transition-colors p-1 -mt-1 -mr-1"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <p className="text-emerald-800/80 text-sm leading-relaxed mb-4">
+              Thank you,{" "}
+              <span className="font-bold uppercase">
+                {formData.name.split(" ")[0]}
+              </span>
+              . We've successfully received your attendance details. If you need
+              to modify your RSVP, please contact{" "}
+              <span className="font-bold">Chloe</span> directly at{" "}
+              <span className="font-bold">(619) 309-8727</span>.
+              {formData.subscribeToUpdates && (
+                <span className="block mt-2 font-medium text-emerald-900">
+                  Important text updates about parking and schedule changes will
+                  be sent to{" "}
+                  <span className="font-bold">
+                    {formatPhone(formData.phone)}
+                  </span>
+                  .
+                </span>
+              )}
+            </p>
+            <div className="flex gap-4 items-center">
+              <button
+                onClick={() => setStep("form")}
+                className="text-emerald-700 text-xs font-bold uppercase tracking-wider hover:text-emerald-900 underline underline-offset-4 decoration-emerald-300"
+              >
+                Add another guest
+              </button>
+            </div>
+          </div>
         </div>
-        <h3 className="text-xl font-serif text-navy-900 font-bold mb-2">
-          Thank you, {formData.name.split(" ")[0]}
-        </h3>
-        <p className="text-stone-600 mb-4">
-          We have received your RSVP.
-          {formData.subscribeToUpdates && (
-            <span className="block mt-2 text-sm font-medium text-navy-900">
-              You will receive text updates at {formData.phone} regarding
-              parking or schedule changes.
-            </span>
-          )}
-        </p>
-        <button
-          onClick={() => setStep("form")}
-          className="text-gold-500 text-sm hover:text-navy-900 underline underline-offset-4"
-        >
-          Register another guest
-        </button>
       </div>
     );
   }
@@ -138,7 +175,7 @@ export const RSVPForm: React.FC = () => {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              className="block w-full p-3 border border-stone-300 rounded-md bg-stone-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-navy-900 focus:border-navy-900 transition-colors"
+              className="block w-full p-3 border border-stone-300 rounded-md bg-stone-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-navy-900 focus:border-navy-900 transition-colors font-sans"
               placeholder="e.g. Jane Doe"
               required
             />
@@ -163,7 +200,7 @@ export const RSVPForm: React.FC = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, phone: e.target.value })
                 }
-                className="block w-full pl-10 pr-3 p-3 border border-stone-300 rounded-md bg-stone-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-navy-900 focus:border-navy-900 transition-colors"
+                className="block w-full pl-10 pr-3 p-3 border border-stone-300 rounded-md bg-stone-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-navy-900 focus:border-navy-900 transition-colors font-sans"
                 placeholder="(555) 123-4567"
                 required
               />
@@ -243,7 +280,7 @@ export const RSVPForm: React.FC = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, guests: e.target.value })
                 }
-                className="block w-full pl-10 pr-3 p-3 border border-stone-300 rounded-md bg-stone-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-navy-900 focus:border-navy-900 transition-colors appearance-none"
+                className="block w-full pl-10 pr-3 p-3 border border-stone-300 rounded-md bg-stone-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-navy-900 focus:border-navy-900 transition-colors appearance-none font-sans"
               >
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <option key={num} value={num}>
