@@ -11,7 +11,7 @@ const ParkingCard: React.FC = () => {
   // Use the src and caption directly from the service object
   const images = event.parkingMapImages || [];
 
-  const programLink = `${window.location.origin}/program`;
+  const programLink = `https://todd-san-agustin-memorial.netlify.app/program`;
 
   return (
     <div className="w-[4.75in] h-[8in] flex flex-col bg-white overflow-hidden p-4 border-x border-stone-100 relative print:border-none">
@@ -36,8 +36,8 @@ const ParkingCard: React.FC = () => {
             <h2 className="font-bold text-stone-900 mb-0.5">
               {event.location.name}
             </h2>
-            <p className="text-stone-600">{event.location.address}</p>
-            <p className="text-stone-600">{event.location.cityStateZip}</p>
+            <p className="text-stone-900">{event.location.address}</p>
+            <p className="text-stone-900">{event.location.cityStateZip}</p>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ const ParkingCard: React.FC = () => {
             <h3 className="font-bold text-stone-800 text-[9px] uppercase tracking-widest mb-0.5">
               Parking & Arrival
             </h3>
-            <p className="text-stone-600 text-[9px] leading-snug">
+            <p className="text-stone-700 text-[9px] leading-snug">
               {event.parkingInfo}
             </p>
           </div>
@@ -82,7 +82,7 @@ const ParkingCard: React.FC = () => {
                   className="absolute inset-0 w-full h-full object-contain"
                 />
               </div>
-              <p className="text-[7px] text-stone-400 mt-0.5 text-center uppercase tracking-widest font-bold">
+              <p className="text-[7px] text-stone-600 mt-0.5 text-center uppercase tracking-widest font-bold">
                 {"LOCATION GUIDE"}
               </p>
             </div>
@@ -97,7 +97,7 @@ const ParkingCard: React.FC = () => {
                   className="absolute inset-0 w-full h-full object-contain"
                 />
               </div>
-              <p className="text-[7px] text-stone-400 mt-0.5 text-center uppercase tracking-widest font-bold">
+              <p className="text-[7px] text-stone-600 mt-0.5 text-center uppercase tracking-widest font-bold">
                 {"CHAPEL ENTRANCE ON 4TH AVE"}
               </p>
             </div>
@@ -117,7 +117,7 @@ const ParkingCard: React.FC = () => {
                   event.notes.map((note, idx) => (
                     <li
                       key={idx}
-                      className="text-stone-500 text-[8px] leading-snug italic"
+                      className="text-stone-700 text-[8px] leading-snug italic"
                     >
                       {note}
                     </li>
@@ -230,9 +230,18 @@ export const PrintableParkingInfo: React.FC<PrintParkingInfoProps> = ({
         <ParkingCard />
 
         {/* Vertical Cutting Guide Line - At the edge of first card */}
-        <div className="absolute top-0 bottom-0 w-px border-l border-dashed border-stone-300 z-50 print:opacity-30" style={{ left: '4.75in' }}></div>
+        <div
+          className="absolute top-0 bottom-0 w-px border-l border-dashed border-stone-300 z-50 print:opacity-30"
+          style={{ left: "4.75in" }}
+        ></div>
 
-        <div className="absolute top-1/2 -translate-y-1/2 z-50 print:hidden pointer-events-none" style={{ left: '4.75in', transform: 'translateX(-50%) translateY(-50%)' }}>
+        <div
+          className="absolute top-1/2 -translate-y-1/2 z-50 print:hidden pointer-events-none"
+          style={{
+            left: "4.75in",
+            transform: "translateX(-50%) translateY(-50%)",
+          }}
+        >
           <div className="bg-white/95 text-stone-400 px-3 py-1 rounded-full text-[10px] font-bold border border-stone-200 uppercase tracking-widest shadow-sm">
             Cut Line
           </div>

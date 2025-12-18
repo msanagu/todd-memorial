@@ -7,6 +7,7 @@ import { Guestbook } from "./components/Guestbook";
 import { RSVPForm } from "./components/RSVPForm";
 import { PrintableProgram } from "./components/PrintableProgram";
 import { PrintableParkingInfo } from "./components/PrintableParkingInfo";
+import { VimeoThumbnail } from "./components/VimeoThumbnail";
 import { Program } from "./components/Program";
 import { Heart, Printer } from "lucide-react";
 import { trackEvent } from "./utils/analytics";
@@ -172,8 +173,8 @@ const MainPage: React.FC = () => {
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
                   {/* Vimeo embed link will be different for each service */}
                   <iframe
-                    // src="https://vimeo.com/event/<first-service>/embed" --- IGNORE ---
-                    src="https://vimeo.com/event/5581149/embed"
+                    src="https://vimeo.com/event/5598355/embed" // Military Honors Burial
+                    // src="https://vimeo.com/event/5598357/embed" // Memorial Service
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -259,6 +260,11 @@ const PrintParkingPage: React.FC = () => {
   return <PrintableParkingInfo onBack={() => navigate("/")} />;
 };
 
+const VimeoThumbnailPage: React.FC = () => {
+  const navigate = useNavigate();
+  return <VimeoThumbnail onBack={() => navigate("/")} />;
+};
+
 const App: React.FC = () => {
   return (
     <Routes>
@@ -266,6 +272,7 @@ const App: React.FC = () => {
       <Route path="/program" element={<ProgramPage />} />
       <Route path="/print-program" element={<PrintProgramPage />} />
       <Route path="/print-parking-info" element={<PrintParkingPage />} />
+      <Route path="/vimeo-thumbnail" element={<VimeoThumbnailPage />} />
     </Routes>
   );
 };
