@@ -188,7 +188,7 @@ const MainPage: React.FC = () => {
 
             {/* Livestream Section */}
             <div className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
-              <div className="p-6 bg-stone-50 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-6 bg-stone-50 border-b border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
                     Watch Services Live
@@ -306,10 +306,11 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* Memorial Video Section */}
-            {/* <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
-              <div className="p-6 bg-stone-50 border-b border-stone-100">
+            <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+              <div className="p-6 bg-stone-50 border-b border-stone-200">
                 <h3 className="font-serif text-2xl text-navy-900 font-semibold">
-                  In Loving Memory of Todd
+                  {`Video tribute coming soon...`}
+                  {/* {`In Loving Memory of Todd`} */}
                 </h3>
                 <p className="text-stone-600 mt-1 text-sm">
                   A collection of treasured memories.
@@ -317,7 +318,12 @@ const MainPage: React.FC = () => {
               </div>
               <div className="bg-black">
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
-                  <iframe
+                  <img
+                    src="/video-tribute-thumbnail.png"
+                    alt="Video Tribute"
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                  />
+                  {/* <iframe
                     src={MEMORIAL_DATA.service.videoTributeUrl || ""}
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
@@ -331,10 +337,10 @@ const MainPage: React.FC = () => {
                       height: "100%",
                     }}
                     title="In Loving Memory of Todd"
-                  />
+                  /> */}
                 </div>
               </div>
-            </div> */}
+            </div>
 
             {/* RSVP Section - Placed after details, before livestream */}
             <div className="mt-8">

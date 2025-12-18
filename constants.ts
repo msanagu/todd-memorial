@@ -7,10 +7,10 @@ export const MEMORIAL_DATA: MemorialData = {
   serviceDate: "December 19th, 2025",
   photoUrl: "/todd-marines-smaller.jpg",
   collagePhotos: [
-    "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=800", // Landscape/Nature
-    "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800", // Calm Water
-    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800", // Portrait
-    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800", // Mountains/Horizon
+    "/pop-warner-portrait.JPG",
+    "/pop-warner.jpg",
+    "/family-dinner.JPG",
+    "/march.JPG",
   ],
   burial: {
     title: "Military Honors Burial",
