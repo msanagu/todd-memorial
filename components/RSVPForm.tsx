@@ -111,8 +111,8 @@ export const RSVPForm: React.FC = () => {
               </span>
               . We've successfully received your attendance details. If you need
               to modify your RSVP, please contact{" "}
-              <span className="font-bold">Chloe</span> directly at{" "}
-              <span className="font-bold">(619) 309-8727</span>.
+              <span className="font-bold">Mary</span> directly at{" "}
+              <span className="font-bold">(949) 291-2504</span>.
               {formData.subscribeToUpdates && (
                 <span className="block mt-2 font-medium text-emerald-900">
                   Important text updates about parking and schedule changes will
