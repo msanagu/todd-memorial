@@ -201,7 +201,7 @@ const MainPage: React.FC = () => {
                     Watch Services Live
                   </h3>
                   <p className="text-stone-600 mt-1 text-sm">
-                    Select a service below to join the broadcast.
+                    Select a service below to watch remotely.
                   </p>
                 </div>
 
