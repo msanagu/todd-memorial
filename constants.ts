@@ -21,6 +21,7 @@ export const MEMORIAL_DATA: MemorialData = {
     parkingMapImages: [
       { src: "/cemetery-map-lane-3.png", caption: "Tap to enlarge map" },
     ],
+    livestreamUrl: "https://vimeo.com/event/5598355/embed",
     notes: [],
   },
   service: {
@@ -39,6 +40,7 @@ export const MEMORIAL_DATA: MemorialData = {
       { src: "/first-pres-map.png", caption: "Tap to enlarge map" },
       { src: "/chapel-entrance.png", caption: "Chapel Entrance on 4th Ave" },
     ],
+    livestreamUrl: "https://vimeo.com/event/5598357/embed",
     notes: [
       "Reception with light fare to follow immediately after the service in the foyer.",
     ],

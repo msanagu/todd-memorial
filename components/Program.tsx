@@ -178,7 +178,7 @@ export const Program: React.FC<ProgramProps> = ({ onBack }) => {
         {/* Parking and Reception Info */}
         <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll animate-ing">
           <h2 className="font-serif text-xl font-bold mb-4 text-center">
-            Parking & Reception
+            Reception
           </h2>
 
           <div className="text-center space-y-2">

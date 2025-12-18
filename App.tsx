@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { MEMORIAL_DATA } from "./constants";
 import { EventCard } from "./components/EventCard";
@@ -9,11 +9,42 @@ import { PrintableProgram } from "./components/PrintableProgram";
 import { PrintableParkingInfo } from "./components/PrintableParkingInfo";
 import { VimeoThumbnail } from "./components/VimeoThumbnail";
 import { Program } from "./components/Program";
-import { Heart, Printer } from "lucide-react";
+import { Heart, Printer, Clock } from "lucide-react";
 import { trackEvent } from "./utils/analytics";
 
 const MainPage: React.FC = () => {
+  const [activeStream, setActiveStream] = useState<"burial" | "service">(
+    "burial"
+  );
+  const [now, setNow] = useState(new Date());
   const navigate = useNavigate();
+
+  // Update clock every minute to refresh "Live" status
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 60000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Helper to parse the custom date format "December 19th, 2025" and time "11:30 AM"
+  const isEventLive = useMemo(() => {
+    const event =
+      activeStream === "burial" ? MEMORIAL_DATA.burial : MEMORIAL_DATA.service;
+
+    try {
+      // Clean "19th" -> "19"
+      const dateClean = MEMORIAL_DATA.serviceDate.replace(
+        /(st|nd|rd|th),/,
+        ","
+      );
+      const dateTimeStr = `${dateClean} ${event.time} PST`;
+      const startTime = new Date(dateTimeStr);
+
+      return now >= startTime;
+    } catch (e) {
+      console.error("Date parsing error:", e);
+      return false;
+    }
+  }, [activeStream, now]);
 
   const handleViewProgram = () => {
     navigate("/program");
@@ -134,7 +165,7 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* Program Feature - commented out until finalized */}
-            <div className="mt-8 flex flex-col items-center animate-on-scroll">
+            <div className="my-8 flex flex-col items-center animate-on-scroll">
               <button
                 onClick={handleViewProgram}
                 className="group w-full md:w-auto relative overflow-hidden bg-white border border-stone-200 hover:border-gold-500/50 shadow-lg hover:shadow-xl rounded-xl p-1 pr-6 transition-all duration-300 transform hover:-translate-y-1"
@@ -156,25 +187,71 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* Livestream Section */}
-            <div className="mt-8 mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
-              <div className="p-6 bg-stone-50 border-b border-stone-100">
-                <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
-                  <span className="mr-3 relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                  </span>
-                  Watch Service Live
-                </h3>
-                <p className="text-stone-600 mt-1 text-sm">
-                  Join us virtually to celebrate Todd's life.
-                </p>
+            <div className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+              <div className="p-6 bg-stone-50 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
+                    Watch Services Live
+                  </h3>
+                  <p className="text-stone-600 mt-1 text-sm">
+                    Select a service below to join the broadcast.
+                  </p>
+                </div>
+
+                <div className="flex bg-stone-200 p-1 rounded-lg">
+                  <button
+                    onClick={() => setActiveStream("burial")}
+                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                      activeStream === "burial"
+                        ? "bg-navy-900 text-white shadow-sm"
+                        : "text-stone-500 hover:text-navy-900"
+                    }`}
+                  >
+                    Military Honors Burial
+                  </button>
+                  <button
+                    onClick={() => setActiveStream("service")}
+                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                      activeStream === "service"
+                        ? "bg-navy-900 text-white shadow-sm"
+                        : "text-stone-500 hover:text-navy-900"
+                    }`}
+                  >
+                    Memorial Service
+                  </button>
+                </div>
               </div>
-              <div className="bg-black">
+
+              <div className="bg-black relative">
+                {/* Dynamic Status Indicator */}
+                <div className="absolute top-4 left-4 z-10 flex items-center bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                  <span className="flex h-2 w-2 mr-2 relative">
+                    {isEventLive ? (
+                      <>
+                        <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </>
+                    ) : (
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-stone-500"></span>
+                    )}
+                  </span>
+                  <span
+                    className={`text-[10px] font-bold uppercase tracking-widest ${
+                      isEventLive ? "text-green-400" : "text-stone-300"
+                    }`}
+                  >
+                    {isEventLive ? "Live Now" : "Scheduled"}
+                  </span>
+                </div>
+
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
-                  {/* Vimeo embed link will be different for each service */}
                   <iframe
-                    src="https://vimeo.com/event/5598355/embed" // Military Honors Burial
-                    // src="https://vimeo.com/event/5598357/embed" // Memorial Service
+                    key={activeStream}
+                    src={
+                      activeStream === "burial"
+                        ? MEMORIAL_DATA.burial.livestreamUrl
+                        : MEMORIAL_DATA.service.livestreamUrl
+                    }
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -186,12 +263,72 @@ const MainPage: React.FC = () => {
                       width: "100%",
                       height: "100%",
                     }}
-                    title="Memorial Service Livestream"
-                    onLoad={() => {
-                      // Rough approximation of "watched" since we can't easily hook into Vimeo iframe events without their SDK
-                      // This just tracks that the iframe loaded successfully
-                      trackEvent("livestream_load", { category: "Engagement" });
+                    title={`${activeStream} Livestream`}
+                    onLoad={() =>
+                      trackEvent("livestream_load", {
+                        category: "Engagement",
+                        label: activeStream,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+
+              <div
+                className={`p-4 flex items-center justify-between text-[11px] font-medium tracking-wide transition-colors ${
+                  isEventLive
+                    ? "bg-green-900 text-green-50"
+                    : "bg-navy-900 text-white"
+                }`}
+              >
+                <div className="flex items-center">
+                  {isEventLive ? (
+                    <Clock className="w-3.5 h-3.5 mr-2 animate-pulse" />
+                  ) : (
+                    <Clock className="w-3.5 h-3.5 mr-2 text-gold-500" />
+                  )}
+                  <span>
+                    {isEventLive
+                      ? "Streaming Live"
+                      : `Starts December 19th at ${
+                          activeStream === "burial"
+                            ? "11:30 AM"
+                            : MEMORIAL_DATA.service.time
+                        }`}
+                  </span>
+                </div>
+                <span className="opacity-60 uppercase">
+                  Pacific Standard Time
+                </span>
+              </div>
+            </div>
+
+            {/* Memorial Video Section */}
+            <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+              <div className="p-6 bg-stone-50 border-b border-stone-100">
+                <h3 className="font-serif text-2xl text-navy-900 font-semibold">
+                  In Loving Memory of Todd
+                </h3>
+                <p className="text-stone-600 mt-1 text-sm">
+                  A collection of treasured memories.
+                </p>
+              </div>
+              <div className="bg-black">
+                <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
+                  <iframe
+                    src="https://player.vimeo.com/video/1039864228?h=2e283b3e34"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
                     }}
+                    title="In Loving Memory of Todd"
                   />
                 </div>
               </div>

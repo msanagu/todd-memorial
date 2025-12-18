@@ -16,6 +16,7 @@ export interface EventDetail {
   location: Location;
   parkingInfo: string;
   parkingMapImages?: MapImage[];
+  livestreamUrl?: string;
   notes?: string[];
 }
 
