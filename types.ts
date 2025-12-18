@@ -17,6 +17,7 @@ export interface EventDetail {
   parkingInfo: string;
   parkingMapImages?: MapImage[];
   livestreamUrl?: string;
+  videoTributeUrl?: string;
   notes?: string[];
 }
 
@@ -63,6 +64,7 @@ export interface MemorialData {
   dod: string;
   serviceDate: string;
   photoUrl: string;
+  collagePhotos?: string[];
   burial: EventDetail;
   service: EventDetail;
   program: ProgramData;

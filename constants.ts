@@ -6,6 +6,12 @@ export const MEMORIAL_DATA: MemorialData = {
   dod: "November 16, 2025",
   serviceDate: "December 19th, 2025",
   photoUrl: "/todd-marines-smaller.jpg",
+  collagePhotos: [
+    "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&q=80&w=800", // Landscape/Nature
+    "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800", // Calm Water
+    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800", // Portrait
+    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800", // Mountains/Horizon
+  ],
   burial: {
     title: "Military Honors Burial",
     time: "11:00 AM Arrival • 11:30 AM Service",
@@ -41,6 +47,7 @@ export const MEMORIAL_DATA: MemorialData = {
       { src: "/chapel-entrance.png", caption: "Chapel Entrance on 4th Ave" },
     ],
     livestreamUrl: "https://vimeo.com/event/5598357/embed",
+    // videoTributeUrl: "https://vimeo.com/event/<id>/embed",
     notes: [
       "Reception with light fare to follow immediately after the service in the foyer.",
     ],

@@ -199,26 +199,28 @@ const MainPage: React.FC = () => {
                 </div>
 
                 <div className="flex bg-stone-200 p-1 rounded-lg">
-                  <button
-                    onClick={() => setActiveStream("burial")}
-                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
-                      activeStream === "burial"
-                        ? "bg-navy-900 text-white shadow-sm"
-                        : "text-stone-500 hover:text-navy-900"
-                    }`}
-                  >
-                    Military Honors Burial
-                  </button>
-                  <button
-                    onClick={() => setActiveStream("service")}
-                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
-                      activeStream === "service"
-                        ? "bg-navy-900 text-white shadow-sm"
-                        : "text-stone-500 hover:text-navy-900"
-                    }`}
-                  >
-                    Memorial Service
-                  </button>
+                  <div className="flex w-full gap-0">
+                    <button
+                      onClick={() => setActiveStream("burial")}
+                      className={`flex-1 px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                        activeStream === "burial"
+                          ? "bg-navy-900 text-white shadow-sm"
+                          : "text-stone-500 hover:text-navy-900"
+                      }`}
+                    >
+                      Military Honors Burial
+                    </button>
+                    <button
+                      onClick={() => setActiveStream("service")}
+                      className={`flex-1 px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                        activeStream === "service"
+                          ? "bg-navy-900 text-white shadow-sm"
+                          : "text-stone-500 hover:text-navy-900"
+                      }`}
+                    >
+                      Memorial Service
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -304,7 +306,7 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* Memorial Video Section */}
-            <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+            {/* <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
               <div className="p-6 bg-stone-50 border-b border-stone-100">
                 <h3 className="font-serif text-2xl text-navy-900 font-semibold">
                   In Loving Memory of Todd
@@ -316,7 +318,7 @@ const MainPage: React.FC = () => {
               <div className="bg-black">
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
                   <iframe
-                    src="https://player.vimeo.com/video/1039864228?h=2e283b3e34"
+                    src={MEMORIAL_DATA.service.videoTributeUrl || ""}
                     frameBorder="0"
                     allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -332,7 +334,7 @@ const MainPage: React.FC = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* RSVP Section - Placed after details, before livestream */}
             <div className="mt-8">
