@@ -187,7 +187,7 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* Livestream Section */}
-            <div className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+            <div className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
               <div className="p-6 bg-stone-50 border-b border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
@@ -306,11 +306,12 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* Memorial Video Section */}
-            <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+            <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
               <div className="p-6 bg-stone-50 border-b border-stone-200">
                 <h3 className="font-serif text-2xl text-navy-900 font-semibold">
-                  {`Video tribute coming soon...`}
-                  {/* {`In Loving Memory of Todd`} */}
+                  {MEMORIAL_DATA.service.videoTributeUrl === ""
+                    ? `Video tribute coming soon...`
+                    : "In Loving Memory of Todd"}
                 </h3>
                 <p className="text-stone-600 mt-1 text-sm">
                   A collection of treasured memories.
@@ -318,37 +319,42 @@ const MainPage: React.FC = () => {
               </div>
               <div className="bg-black">
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
-                  <img
-                    src="/video-tribute-thumbnail.png"
-                    alt="Video Tribute"
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                  />
-                  {/* <iframe
-                    src={MEMORIAL_DATA.service.videoTributeUrl || ""}
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                    }}
-                    title="In Loving Memory of Todd"
-                  /> */}
+                  {MEMORIAL_DATA.service.videoTributeUrl === "" ? (
+                    <img
+                      src="/video-tribute-thumbnail.png"
+                      alt="Video Tribute"
+                      className="absolute top-0 left-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <iframe
+                      src={MEMORIAL_DATA.service.videoTributeUrl}
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                      }}
+                      title="In Loving Memory of Todd"
+                    />
+                  )}
                 </div>
               </div>
             </div>
 
             {/* RSVP Section - Placed after details, before livestream */}
-            <div className="mt-8">
+            <div className="mt-8 animate-on-scroll">
               <RSVPForm />
             </div>
 
             {/* Guestbook Section */}
-            <Guestbook />
+            <div className="animate-on-scroll">
+              <Guestbook />
+            </div>
 
             {/* Additional Info / Resources */}
             <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
