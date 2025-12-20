@@ -81,7 +81,7 @@ export const Guestbook: React.FC = () => {
 
   return (
     <div className="mt-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
-      <div className="p-6 bg-stone-50 border-b border-stone-100">
+      <div className="p-6 pb-0 bg-stone-50 border-b border-stone-100">
         <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
           <MessageSquare className="w-5 h-5 mr-3 text-gold-500" />
           Guestbook
@@ -95,7 +95,7 @@ export const Guestbook: React.FC = () => {
         {/* Input Form */}
         <form
           onSubmit={handleSubmit}
-          className="mb-10 bg-stone-50 p-5 rounded-lg border border-stone-100 shadow-sm"
+          className="mb-10 bg-stone-50 rounded-lg border border-stone-100 shadow-sm"
         >
           <div className="mb-4">
             <label

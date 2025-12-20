@@ -153,12 +153,14 @@ const MainPage: React.FC = () => {
           <SectionWrapper className="max-w-xl mx-auto">
             {/* Invitation Text */}
             <p className="text-center text-stone-600 italic font-serif mb-8 text-lg animate-on-scroll">
-              The family invites you to join them in honoring the life and
-              service of Todd James San Agustin.
+              Thank you to all who joined us in person or virtually to remember
+              and honor Todd. Your presence meant so much to our family.
+              {/* The family invites you to join them in honoring the life and
+              service of Todd James San Agustin. */}
             </p>
 
             {/* Events Timeline */}
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-stone-200 hidden md:block"></div>
 
               <div className="relative z-10">
@@ -169,7 +171,7 @@ const MainPage: React.FC = () => {
                   <EventCard event={MEMORIAL_DATA.service} />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* View Program Button */}
             <div className="my-8 flex flex-col items-center animate-on-scroll">
@@ -234,7 +236,7 @@ const MainPage: React.FC = () => {
               </div>
 
               <div className="bg-black relative">
-                <div className="absolute top-4 left-4 z-10 flex items-center bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                {/* <div className="absolute top-4 left-4 z-10 flex items-center bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                   <span className="flex h-2 w-2 mr-2 relative">
                     {streamStatus === "live" ? (
                       <>
@@ -260,7 +262,7 @@ const MainPage: React.FC = () => {
                       ? "Recorded"
                       : "Scheduled"}
                   </span>
-                </div>
+                </div> */}
 
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
                   <iframe
@@ -359,9 +361,9 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* RSVP Form Section */}
-            <div className="mt-8 animate-on-scroll">
+            {/* <div className="mt-8 animate-on-scroll">
               <RSVPForm />
-            </div>
+            </div> */}
 
             {/* Guestbook Section */}
             <div className="animate-on-scroll">
