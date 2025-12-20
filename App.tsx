@@ -211,10 +211,10 @@ const MainPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="flex bg-stone-200 p-1 rounded-lg">
+                <div className="flex flex-row w-full bg-stone-200 p-1 rounded-lg">
                   <button
                     onClick={() => setActiveStream("burial")}
-                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                    className={`flex-1 px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
                       activeStream === "burial"
                         ? "bg-navy-900 text-white shadow-sm"
                         : "text-stone-500 hover:text-navy-900"
@@ -224,7 +224,7 @@ const MainPage: React.FC = () => {
                   </button>
                   <button
                     onClick={() => setActiveStream("service")}
-                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                    className={`flex-1 px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
                       activeStream === "service"
                         ? "bg-navy-900 text-white shadow-sm"
                         : "text-stone-500 hover:text-navy-900"
