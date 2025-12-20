@@ -9,7 +9,7 @@ import { Program } from "./components/Program";
 import { PrintableProgram } from "./components/PrintableProgram";
 import { PrintableParkingInfo } from "./components/PrintableParkingInfo";
 import { VimeoThumbnail } from "./components/VimeoThumbnail";
-import { Heart, Printer, Clock } from "lucide-react";
+import { Heart, Printer, Clock, CheckCircle, PlayCircle } from "lucide-react";
 import { trackEvent } from "./utils/analytics";
 
 const MainPage: React.FC = () => {
@@ -25,28 +25,28 @@ const MainPage: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Determines if the selected event (burial or service) is currently live
-  // by comparing the current time to the event's scheduled start time.
-  const isEventLive = useMemo(() => {
-    // Select the correct event based on the active stream
+  const streamStatus = useMemo(() => {
     const event =
       activeStream === "burial" ? MEMORIAL_DATA.burial : MEMORIAL_DATA.service;
 
     try {
-      // Clean up the service date string to ensure correct parsing
       const dateClean = MEMORIAL_DATA.serviceDate.replace(
         /(st|nd|rd|th),/,
         ","
       );
-      // Combine date and event time, assume PST timezone
       const dateTimeStr = `${dateClean} ${event.time} PST`;
       const startTime = new Date(dateTimeStr);
-      // Return true if the current time is after the event start time
-      return now >= startTime;
+
+      // Assume event is "Live" for 2 hours after start, then "Recording"
+      const durationMs = 2 * 60 * 60 * 1000;
+      const endTime = new Date(startTime.getTime() + durationMs);
+
+      if (now < startTime) return "scheduled";
+      if (now >= startTime && now < endTime) return "live";
+      return "recording";
     } catch (e) {
-      // If parsing fails, log error and return false
       console.error("Date parsing error:", e);
-      return false;
+      return "scheduled";
     }
   }, [activeStream, now]);
 
@@ -193,62 +193,72 @@ const MainPage: React.FC = () => {
               </button>
             </div>
 
-            {/* Livestream Section */}
+            {/* Livestream / Recording Section */}
             <div className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
-              <div className="p-6 bg-stone-50 border-b border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-6 bg-stone-50 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
-                    Watch Services Live
+                    {streamStatus === "recording"
+                      ? "Watch Recorded Services"
+                      : "Watch Services Live"}
                   </h3>
                   <p className="text-stone-600 mt-1 text-sm">
-                    Select a service below to watch remotely.
+                    {streamStatus === "recording"
+                      ? "Broadcasts are now available for viewing."
+                      : "Select a service below to join the broadcast."}
                   </p>
                 </div>
 
                 <div className="flex bg-stone-200 p-1 rounded-lg">
-                  <div className="flex w-full gap-0">
-                    <button
-                      onClick={() => setActiveStream("burial")}
-                      className={`flex-1 px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
-                        activeStream === "burial"
-                          ? "bg-navy-900 text-white shadow-sm"
-                          : "text-stone-500 hover:text-navy-900"
-                      }`}
-                    >
-                      Honors Burial
-                    </button>
-                    <button
-                      onClick={() => setActiveStream("service")}
-                      className={`flex-1 px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
-                        activeStream === "service"
-                          ? "bg-navy-900 text-white shadow-sm"
-                          : "text-stone-500 hover:text-navy-900"
-                      }`}
-                    >
-                      Memorial Service
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => setActiveStream("burial")}
+                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                      activeStream === "burial"
+                        ? "bg-navy-900 text-white shadow-sm"
+                        : "text-stone-500 hover:text-navy-900"
+                    }`}
+                  >
+                    Honors Burial
+                  </button>
+                  <button
+                    onClick={() => setActiveStream("service")}
+                    className={`px-3 py-1.5 rounded-md text-[10px] font-bold transition-all ${
+                      activeStream === "service"
+                        ? "bg-navy-900 text-white shadow-sm"
+                        : "text-stone-500 hover:text-navy-900"
+                    }`}
+                  >
+                    Memorial Service
+                  </button>
                 </div>
               </div>
 
               <div className="bg-black relative">
                 <div className="absolute top-4 left-4 z-10 flex items-center bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                   <span className="flex h-2 w-2 mr-2 relative">
-                    {isEventLive ? (
+                    {streamStatus === "live" ? (
                       <>
                         <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-green-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                       </>
+                    ) : streamStatus === "recording" ? (
+                      <CheckCircle className="w-3 h-3 text-gold-500" />
                     ) : (
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-stone-500"></span>
                     )}
                   </span>
                   <span
                     className={`text-[10px] font-bold uppercase tracking-widest ${
-                      isEventLive ? "text-green-400" : "text-stone-300"
+                      streamStatus === "live"
+                        ? "text-green-400"
+                        : "text-stone-300"
                     }`}
                   >
-                    {isEventLive ? "Live Now" : "Scheduled"}
+                    {streamStatus === "live"
+                      ? "Live Now"
+                      : streamStatus === "recording"
+                      ? "Recorded"
+                      : "Scheduled"}
                   </span>
                 </div>
 
@@ -271,30 +281,32 @@ const MainPage: React.FC = () => {
                       width: "100%",
                       height: "100%",
                     }}
-                    title={`${activeStream} Livestream`}
+                    title={`${activeStream} Broadcast`}
                   />
                 </div>
               </div>
 
               <div
                 className={`p-4 flex items-center justify-between text-[11px] font-medium tracking-wide transition-colors ${
-                  isEventLive
+                  streamStatus === "live"
                     ? "bg-green-900 text-green-50"
                     : "bg-navy-900 text-white"
                 }`}
               >
                 <div className="flex items-center">
-                  {isEventLive ? (
-                    <Clock className="w-3.5 h-3.5 mr-2 animate-pulse" />
+                  {streamStatus === "live" ? (
+                    <PlayCircle className="w-3.5 h-3.5 mr-2 animate-pulse" />
                   ) : (
                     <Clock className="w-3.5 h-3.5 mr-2 text-gold-500" />
                   )}
                   <span>
-                    {isEventLive
+                    {streamStatus === "live"
                       ? "Streaming Live"
-                      : `Starts December 19th at ${
+                      : streamStatus === "recording"
+                      ? "Service Complete - Recorded View"
+                      : `Starts at ${
                           activeStream === "burial"
-                            ? "11:30 AM"
+                            ? MEMORIAL_DATA.burial.time
                             : MEMORIAL_DATA.service.time
                         }`}
                   </span>
