@@ -93,10 +93,7 @@ export const Guestbook: React.FC = () => {
 
       <div className="p-6">
         {/* Input Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="mb-10 rounded-lg border border-stone-100 shadow-sm"
-        >
+        <form onSubmit={handleSubmit} className="mb-10 rounded-lg">
           <div className="mb-4">
             <label
               htmlFor="name"

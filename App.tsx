@@ -359,9 +359,9 @@ const MainPage: React.FC = () => {
                 </div>
               </div>
               <div
-                className={`p-4 flex items-center justify-between text-[11px] font-medium tracking-wide transition-colors`}
+                className={`p-4 flex items-center justify-between text-[11px] font-medium tracking-wide transition-colors border-t`}
               >
-                <div className="flex items-center">
+                {/* <div className="flex items-center">
                   {streamStatus === "live" ? (
                     <PlayCircle className="w-3.5 h-3.5 mr-2 animate-pulse" />
                   ) : (
@@ -378,7 +378,7 @@ const MainPage: React.FC = () => {
                             : MEMORIAL_DATA.service.time
                         }`}
                   </span>
-                </div>
+                </div> */}
                 {/* <span className="opacity-60 uppercase">
                   Pacific Standard Time
                 </span> */}
