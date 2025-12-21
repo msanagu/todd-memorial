@@ -197,7 +197,7 @@ const MainPage: React.FC = () => {
 
             {/* Livestream / Recording Section */}
             <div className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
-              <div className="p-6 bg-stone-50 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="p-6 bg-stone-50 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 flex-wrap">
                 <div>
                   <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
                     {streamStatus === "recording"
