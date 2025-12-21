@@ -359,7 +359,7 @@ const MainPage: React.FC = () => {
                 </div>
               </div>
               <div
-                className={`p-4 flex items-center justify-between text-[11px] font-medium tracking-wide transition-colors border-t`}
+                className={`p-4 flex items-center justify-between text-[11px] font-medium tracking-wide transition-colors border-t border-stone-200`}
               >
                 {/* <div className="flex items-center">
                   {streamStatus === "live" ? (
