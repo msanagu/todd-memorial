@@ -9,7 +9,7 @@ interface VimeoThumbnailProps {
 type DesignMode = "livestream" | "nostalgic";
 
 export const VimeoThumbnail: React.FC<VimeoThumbnailProps> = ({ onBack }) => {
-  const [mode, setMode] = useState<DesignMode>("livestream");
+  const [mode, setMode] = useState<DesignMode>("nostalgic");
 
   return (
     <div className="min-h-screen bg-stone-900 flex flex-col items-center justify-center p-4 md:p-8 font-sans">
@@ -156,106 +156,88 @@ export const VimeoThumbnail: React.FC<VimeoThumbnailProps> = ({ onBack }) => {
             </div>
           </div>
         ) : (
-          /* DESIGN 2: NOSTALGIC COLLAGE (CENTERED VERTICAL LAYOUT - REFINED) */
-          <div className="h-full w-full bg-[#F9F8F6] flex flex-col items-center justify-start p-6 md:p-10 animate-in fade-in slide-in-from-bottom-4 duration-700 overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,179,88,0.02),transparent)] pointer-events-none" />
-
-            {/* Top Section: Hero Typography (More Compact) */}
-            <div className="w-full text-center relative z-40 mb-6 mt-2">
-              {/* Branding Header */}
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <div className="h-px w-8 bg-gold-500/20" />
-                <span className="text-[9px] font-bold text-gold-500 uppercase tracking-[0.4em]">
+          /* DESIGN 2: NOSTALGIC COLLAGE (EXACT REPLICA OF USER REFERENCE) */
+          <div className="h-full w-full bg-[#f4f3f1] flex flex-col items-center justify-between py-12 md:py-16 animate-in fade-in duration-700 overflow-hidden">
+            {/* Header: Fixed top section to prevent overlap */}
+            <div className="text-center w-full z-40 mb-4 px-8">
+              <div className="flex items-center justify-center gap-4 mb-3">
+                <div className="h-px w-10 bg-gold-500/30" />
+                <span className="text-[11px] md:text-[13px] font-bold text-gold-500 uppercase tracking-[0.5em] font-sans">
                   In Loving Memory
                 </span>
-                <div className="h-px w-8 bg-gold-500/20" />
+                <div className="h-px w-10 bg-gold-500/30" />
               </div>
 
-              {/* Name Section */}
-              <div className="mb-3">
-                <h1 className="font-serif text-navy-900 leading-[0.9] tracking-tight">
-                  <span className="block text-4xl md:text-5xl font-bold uppercase mb-0.5 tracking-wide">
-                    TODD
-                  </span>
-                  <span className="block text-3xl md:text-4xl font-light text-stone-400 uppercase tracking-tighter">
-                    JAMES SAN AGUSTIN
-                  </span>
-                </h1>
-              </div>
+              <h1 className="font-serif text-navy-900 text-2xl md:text-[3rem] font-bold uppercase tracking-tight leading-none mb-4">
+                TODD JAMES SAN AGUSTIN
+              </h1>
 
-              {/* Dates Section with Vertical Gold Embellishment (Shorter) */}
-              <div className="flex items-center justify-center gap-6 md:gap-10">
-                <span className="font-serif text-lg md:text-xl text-stone-600 tracking-wide font-medium">
-                  {MEMORIAL_DATA.dob}
-                </span>
-
-                {/* Gold Embellishment (Vertical Line - Shorter) */}
-                <div className="flex flex-col items-center gap-0.5 opacity-40">
-                  <div className="w-[2.5px] h-[2.5px] bg-gold-500 rounded-full" />
-                  <div className="w-[1.2px] h-6 bg-gold-500" />
-                  <div className="w-[2.5px] h-[2.5px] bg-gold-500 rounded-full" />
-                </div>
-
-                <span className="font-serif text-lg md:text-xl text-stone-600 tracking-wide font-medium">
-                  {MEMORIAL_DATA.dod}
-                </span>
+              <div className="flex items-center justify-center gap-8 font-serif text-lg md:text-2xl text-stone-400">
+                <span>{MEMORIAL_DATA.dob}</span>
+                <div className="w-[1px] h-6 md:h-8 bg-gold-500/30" />
+                <span>{MEMORIAL_DATA.dod}</span>
               </div>
             </div>
 
-            {/* Middle Section: Centered Broad Collage (Larger Photos, Overlapped) */}
-            <div className="relative w-full flex-1 flex items-center justify-center pb-12">
-              <div className="flex items-center justify-center w-full max-w-7xl">
-                {/* Photo 1 - Leftmost */}
-                <div className="w-[25%] aspect-[4/5] bg-white p-2 shadow-xl border border-stone-100 rounded-sm transform rotate-[-3deg] transition-transform hover:rotate-0 duration-500 z-10 shrink-0 translate-x-4">
-                  <img
-                    src={
-                      MEMORIAL_DATA.collagePhotos?.[0] || MEMORIAL_DATA.photoUrl
-                    }
-                    className="w-full h-full object-cover"
-                    alt=""
-                  />
+            {/* Photo Collage Layer - Lowered and refined transformation */}
+            <div className="relative w-full h-[60%] flex items-end justify-center px-8 md:px-16 pb-8">
+              <div className="relative w-full max-w-6xl flex items-end justify-center -space-x-8 md:-space-x-12">
+                {/* Photo 1: Kid/Football - Rotated Left, Low */}
+                <div className="w-[24%] bg-white p-3 md:p-4 shadow-xl border border-stone-200/40 rounded-sm transform rotate-[-4deg] -translate-y-2 z-10 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={
+                        MEMORIAL_DATA.collagePhotos?.[0] ||
+                        MEMORIAL_DATA.photoUrl
+                      }
+                      className="w-full h-full object-cover"
+                      alt=""
+                    />
+                  </div>
                 </div>
 
-                {/* Photo 2 - Left-Center */}
-                <div className="w-[25%] aspect-[4/5] bg-white p-2 shadow-2xl border border-stone-100 rounded-sm transform rotate-[1deg] transition-transform hover:rotate-0 duration-500 z-30 shrink-0 translate-x-1 translate-y-2">
-                  <img
-                    src={
-                      MEMORIAL_DATA.collagePhotos?.[1] || MEMORIAL_DATA.photoUrl
-                    }
-                    className="w-full h-full object-cover"
-                    alt=""
-                  />
+                {/* Photo 2: High School Football - Rotated Right, Slightly Higher */}
+                <div className="w-[24%] bg-white p-3 md:p-4 shadow-xl border border-stone-200/40 rounded-sm transform rotate-[3deg] -translate-y-6 z-20 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={
+                        MEMORIAL_DATA.collagePhotos?.[1] ||
+                        MEMORIAL_DATA.photoUrl
+                      }
+                      className="w-full h-full object-cover"
+                      alt=""
+                    />
+                  </div>
                 </div>
 
-                {/* Photo 3 - Right-Center (Emphasis) */}
-                <div className="w-[27%] aspect-[4/5] bg-white p-3 shadow-2xl border border-stone-100 rounded-sm transform rotate-[-1deg] transition-transform hover:rotate-0 duration-500 z-40 shrink-0 -translate-x-2 -translate-y-4">
-                  <img
-                    src={
-                      MEMORIAL_DATA.collagePhotos?.[2] || MEMORIAL_DATA.photoUrl
-                    }
-                    className="w-full h-full object-cover"
-                    alt=""
-                  />
+                {/* Photo 3: Family Photo - Rotated Left, Highest in middle */}
+                <div className="w-[24%] bg-white p-3 md:p-4 shadow-2xl border border-stone-200/40 rounded-sm transform rotate-[-2deg] -translate-y-10 z-30 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={
+                        MEMORIAL_DATA.collagePhotos?.[2] ||
+                        MEMORIAL_DATA.photoUrl
+                      }
+                      className="w-full h-full object-cover"
+                      alt=""
+                    />
+                  </div>
                 </div>
 
-                {/* Photo 4 - Rightmost */}
-                <div className="w-[25%] aspect-[4/5] bg-white p-2 shadow-xl border border-stone-100 rounded-sm transform rotate-[2deg] transition-transform hover:rotate-0 duration-500 z-20 shrink-0 -translate-x-6 translate-y-4">
-                  <img
-                    src={
-                      MEMORIAL_DATA.collagePhotos?.[3] || MEMORIAL_DATA.photoUrl
-                    }
-                    className="w-full h-full object-cover"
-                    alt=""
-                  />
+                {/* Photo 4: Military - Rotated Right, High but lower than middle */}
+                <div className="w-[24%] bg-white p-3 md:p-4 shadow-xl border border-stone-200/40 rounded-sm transform rotate-[5deg] -translate-y-6 z-10 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={
+                        MEMORIAL_DATA.collagePhotos?.[3] ||
+                        MEMORIAL_DATA.photoUrl
+                      }
+                      className="w-full h-full object-cover"
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Bottom Footer Section */}
-            <div className="w-full text-center pb-6 relative z-50">
-              <p className="font-serif text-navy-900 italic text-lg opacity-60 tracking-wide">
-                Video tribute coming soon...
-              </p>
             </div>
           </div>
         )}
@@ -273,9 +255,9 @@ export const VimeoThumbnail: React.FC<VimeoThumbnailProps> = ({ onBack }) => {
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#F9F8F6] border border-stone-300"></div>
+            <div className="w-3 h-3 rounded-full bg-[#f4f3f1] border border-stone-300"></div>
             <span className="text-xs uppercase tracking-tighter font-bold">
-              Cream Theme
+              Nostalgic Theme
             </span>
           </div>
         </div>

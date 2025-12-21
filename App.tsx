@@ -331,7 +331,7 @@ const MainPage: React.FC = () => {
                   A collection of treasured memories.
                 </p>
               </div>
-              <div className="bg-black">
+              <div>
                 <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
                   {MEMORIAL_DATA.service.videoTributeUrl === "" ? (
                     <img

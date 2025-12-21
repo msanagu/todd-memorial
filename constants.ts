@@ -47,7 +47,7 @@ export const MEMORIAL_DATA: MemorialData = {
       { src: "/chapel-entrance.png", caption: "Chapel Entrance on 4th Ave" },
     ],
     livestreamUrl: "https://player.vimeo.com/video/1147499954",
-    videoTributeUrl: "", // Once updated the home page will automatically show the embed
+    videoTributeUrl: "https://player.vimeo.com/video/1148459491", // Once updated the home page will automatically show the embed
     notes: [
       "Reception with light fare to follow immediately after the service in the foyer.",
     ],
