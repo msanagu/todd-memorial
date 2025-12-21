@@ -313,9 +313,9 @@ const MainPage: React.FC = () => {
                         }`}
                   </span>
                 </div>
-                <span className="opacity-60 uppercase">
+                {/* <span className="opacity-60 uppercase">
                   Pacific Standard Time
-                </span>
+                </span> */}
               </div>
             </div>
 
@@ -357,6 +357,31 @@ const MainPage: React.FC = () => {
                     />
                   )}
                 </div>
+              </div>
+              <div
+                className={`p-4 flex items-center justify-between text-[11px] font-medium tracking-wide transition-colors`}
+              >
+                <div className="flex items-center">
+                  {streamStatus === "live" ? (
+                    <PlayCircle className="w-3.5 h-3.5 mr-2 animate-pulse" />
+                  ) : (
+                    <Clock className="w-3.5 h-3.5 mr-2 text-gold-500" />
+                  )}
+                  <span>
+                    {streamStatus === "live"
+                      ? "Streaming Live"
+                      : streamStatus === "recording"
+                      ? "Service Complete - Recorded View"
+                      : `Starts at ${
+                          activeStream === "burial"
+                            ? MEMORIAL_DATA.burial.time
+                            : MEMORIAL_DATA.service.time
+                        }`}
+                  </span>
+                </div>
+                {/* <span className="opacity-60 uppercase">
+                  Pacific Standard Time
+                </span> */}
               </div>
             </div>
 
