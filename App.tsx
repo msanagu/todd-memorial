@@ -412,7 +412,7 @@ const MainPage: React.FC = () => {
         </main>
 
         {/* Footer Section */}
-        <footer className="relative text-center py-12 px-6 bg-white border-t border-stone-100 overflow-hidden">
+        <footer className="relative text-center py-12 px-6 bg-white border-t border-stone-200 overflow-hidden">
           <div className="relative z-10">
             <p className="text-stone-400 text-xs tracking-widest uppercase mb-2">
               In Loving Memory of
