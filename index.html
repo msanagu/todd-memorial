@@ -9,18 +9,21 @@
     <meta name="title" content="Memorial Service - Todd James San Agustin" />
     <meta
       name="description"
-      content="Official memorial landing page for Todd James San Agustin. Service details for Miramar National Cemetery and First Presbyterian Church, San Diego. Share memories in the guestbook."
+      content="Official memorial page for Todd James San Agustin. Join us on December 19th, 2025, for the Honors Burial at Miramar National Cemetery and Memorial Service in San Diego."
     />
     <meta
       name="keywords"
       content="Todd James San Agustin, Memorial Service, Miramar National Cemetery, San Diego, Honors Burial, Marine Corps Veteran, Obituary"
     />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="language" content="English" />
+    <meta name="author" content="The San Agustin Family" />
     <link
       rel="canonical"
       href="https://todd-san-agustin-memorial.netlify.app/"
     />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0a1f44" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -28,6 +31,7 @@
       property="og:url"
       content="https://todd-san-agustin-memorial.netlify.app/"
     />
+    <meta property="og:site_name" content="Todd James San Agustin Memorial" />
     <meta
       property="og:title"
       content="In Loving Memory of Todd James San Agustin"
@@ -38,8 +42,11 @@
     />
     <meta
       property="og:image"
-      content="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1200&h=630"
+      content="https://todd-san-agustin-memorial.netlify.app/todd-marines-smaller.jpg"
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -57,53 +64,63 @@
     />
     <meta
       property="twitter:image"
-      content="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=1200&h=630"
+      content="https://todd-san-agustin-memorial.netlify.app/todd-marines-smaller.jpg"
     />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "Memorial Service for Todd James San Agustin",
-        "startDate": "2025-12-19T12:45",
-        "endDate": "2025-12-19T14:30",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-        "location": [
+        "@graph": [
           {
-            "@type": "Place",
-            "name": "Miramar National Cemetery",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "5795 Nobel Dr.",
-              "addressLocality": "San Diego",
-              "addressRegion": "CA",
-              "postalCode": "92122",
-              "addressCountry": "US"
+            "@type": "Person",
+            "@id": "https://todd-san-agustin-memorial.netlify.app/#person",
+            "name": "Todd James San Agustin",
+            "birthDate": "1965-03-16",
+            "deathDate": "2025-11-16",
+            "jobTitle": "US Marine Corps Veteran",
+            "image": "https://todd-san-agustin-memorial.netlify.app/todd-marines-smaller.jpg",
+            "url": "https://todd-san-agustin-memorial.netlify.app/"
+          },
+          {
+            "@type": "Event",
+            "name": "Honors Burial for Todd James San Agustin",
+            "startDate": "2025-12-19T11:30",
+            "location": {
+              "@type": "Place",
+              "name": "Miramar National Cemetery",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "5795 Nobel Dr.",
+                "addressLocality": "San Diego",
+                "addressRegion": "CA",
+                "postalCode": "92122"
+              }
+            },
+            "subjectOf": {
+              "@id": "https://todd-san-agustin-memorial.netlify.app/#person"
             }
           },
           {
-            "@type": "Place",
-            "name": "First Presbyterian Church",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "1735 4th Ave.",
-              "addressLocality": "San Diego",
-              "addressRegion": "CA",
-              "postalCode": "92101",
-              "addressCountry": "US"
+            "@type": "Event",
+            "name": "Memorial Service for Todd James San Agustin",
+            "startDate": "2025-12-19T12:45",
+            "location": {
+              "@type": "Place",
+              "name": "First Presbyterian Church",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "1735 4th Ave.",
+                "addressLocality": "San Diego",
+                "addressRegion": "CA",
+                "postalCode": "92101"
+              }
+            },
+            "subjectOf": {
+              "@id": "https://todd-san-agustin-memorial.netlify.app/#person"
             }
           }
-        ],
-        "image": [
-          "https://todd-san-agustin-memorial.netlify.app/todd-marines-smaller.jpg"
-        ],
-        "description": "A memorial service honoring the life and military service of Todd James San Agustin.",
-        "performer": {
-          "@type": "Person",
-          "name": "Todd James San Agustin"
-        }
+        ]
       }
     </script>
 
@@ -164,14 +181,34 @@
   <body class="bg-stone-100 text-stone-800">
     <div id="root">
       <!-- SEO Fallback Content (Visible to crawlers before JS loads) -->
-      <article style="display: none">
-        <h1>Todd James San Agustin</h1>
-        <p>Born: March 16, 1965 | Died: November 16, 2025</p>
-        <p>Memorial Service: December 19th, 2025 in San Diego, CA.</p>
+      <article class="sr-only" aria-hidden="false">
+        <h1>Todd James San Agustin Memorial</h1>
         <p>
-          Services include Military Honors Burial at Miramar National Cemetery
-          and Memorial Service at First Presbyterian Church.
+          In loving memory of Todd James San Agustin (March 16, 1965 – November
+          16, 2025).
         </p>
+        <p>
+          A devoted US Marine Corps veteran and beloved family man. Memorial
+          services are scheduled for December 19, 2025, in San Diego, CA.
+        </p>
+        <section>
+          <h2>Service Schedule</h2>
+          <ul>
+            <li>
+              <strong>Honors Burial:</strong> 11:30 AM at Miramar National
+              Cemetery, San Diego.
+            </li>
+            <li>
+              <strong>Memorial Service:</strong> 12:45 PM at First Presbyterian
+              Church, San Diego.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Locations</h2>
+          <p>Miramar National Cemetery: 5795 Nobel Dr, San Diego, CA 92122.</p>
+          <p>First Presbyterian Church: 1735 4th Ave, San Diego, CA 92101.</p>
+        </section>
       </article>
     </div>
     <script type="module" src="/index.tsx"></script>

@@ -111,6 +111,7 @@ const MainPage: React.FC = () => {
           backgroundPosition: "center",
           backgroundBlendMode: "overlay",
         }}
+        aria-hidden="true"
       />
 
       <div className="max-w-2xl mx-auto relative z-10 shadow-2xl min-h-screen bg-white/95 backdrop-blur-sm sm:my-8 sm:rounded-xl overflow-hidden border-t-8 border-navy-900 w-full">
@@ -124,18 +125,19 @@ const MainPage: React.FC = () => {
               <span className="block font-bold">SAN AGUSTIN</span>
             </h1>
 
-            <div className="flex items-center justify-center gap-3 text-stone-500 text-sm md:text-base font-medium tracking-widest uppercase mt-4 mb-8 animate-on-scroll">
+            <p className="flex items-center justify-center gap-3 text-stone-500 text-sm md:text-base font-medium tracking-widest uppercase mt-4 mb-8 animate-on-scroll">
               <span>{MEMORIAL_DATA.dob}</span>
               <span className="text-gold-500">•</span>
               <span>{MEMORIAL_DATA.dod}</span>
-            </div>
+            </p>
 
             <div className="relative mx-auto w-64 h-80 md:w-72 md:h-96 shadow-2xl rounded-sm p-2 bg-white animate-on-scroll">
               <div className="absolute inset-0 border border-stone-200 m-2 pointer-events-none"></div>
               <img
                 src={MEMORIAL_DATA.photoUrl}
-                alt={MEMORIAL_DATA.name}
+                alt={`Official Portrait of ${MEMORIAL_DATA.name}`}
                 className="w-full h-full object-cover object-top"
+                loading="eager"
               />
             </div>
           </SectionWrapper>
@@ -152,12 +154,12 @@ const MainPage: React.FC = () => {
         <main className="p-4 md:p-4 bg-[#FDFBF7]">
           <SectionWrapper className="max-w-xl mx-auto">
             {/* Invitation Text */}
-            <p className="text-center text-stone-600 italic font-serif mb-8 text-lg animate-on-scroll">
+            <h2 className="text-center text-stone-600 italic font-serif mb-8 text-lg animate-on-scroll">
               Thank you to all who joined us in person or virtually to remember
               and honor Todd. Your presence meant so much to our family.
               {/* The family invites you to join them in honoring the life and
               service of Todd James San Agustin. */}
-            </p>
+            </h2>
 
             {/* Events Timeline */}
             {/* <div className="relative">
@@ -196,7 +198,7 @@ const MainPage: React.FC = () => {
             </div>
 
             {/* Livestream / Recording Section */}
-            <div className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
+            <section className="mb-6 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
               <div className="p-6 bg-stone-50 border-b border-stone-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 flex-wrap">
                 <div>
                   <h3 className="font-serif text-2xl text-navy-900 font-semibold flex items-center">
@@ -317,10 +319,10 @@ const MainPage: React.FC = () => {
                   Pacific Standard Time
                 </span> */}
               </div>
-            </div>
+            </section>
 
             {/* Memorial Video Section */}
-            <div className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
+            <section className="mb-8 bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden animate-on-scroll">
               <div className="p-6 bg-stone-50 border-b border-stone-200">
                 <h3 className="font-serif text-2xl text-navy-900 font-semibold">
                   {MEMORIAL_DATA.service.videoTributeUrl === ""
@@ -383,20 +385,20 @@ const MainPage: React.FC = () => {
                   Pacific Standard Time
                 </span> */}
               </div>
-            </div>
+            </section>
 
             {/* RSVP Form Section */}
-            {/* <div className="mt-8 animate-on-scroll">
+            {/* <section className="mt-8 animate-on-scroll">
               <RSVPForm />
-            </div> */}
+            </section> */}
 
             {/* Guestbook Section */}
-            <div className="animate-on-scroll">
+            <section className="animate-on-scroll">
               <Guestbook />
-            </div>
+            </section>
 
             {/* Family Gratitude Section */}
-            <div className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
+            <section className="mt-10 p-6 bg-stone-100 rounded-xl text-center border border-stone-200 animate-on-scroll">
               <h3 className="font-serif text-xl text-navy-900 mb-3">
                 Family Gratitude
               </h3>
@@ -407,7 +409,7 @@ const MainPage: React.FC = () => {
               <div className="flex justify-center text-navy-900 opacity-50">
                 <Heart className="w-6 h-6 fill-current" />
               </div>
-            </div>
+            </section>
           </SectionWrapper>
         </main>
 

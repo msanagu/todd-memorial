@@ -1,0 +1,20 @@
+{
+  "short_name": "Todd Memorial",
+  "name": "Todd James San Agustin Memorial",
+  "icons": [
+    {
+      "src": "/todd-marines-smaller.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/todd-marines-smaller.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#F9F8F6",
+  "display": "standalone",
+  "theme_color": "#0a1f44"
+}
