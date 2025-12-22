@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://todd-san-agustin-memorial.netlify.app/sitemap.xml
